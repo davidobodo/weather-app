@@ -12,6 +12,7 @@ import SingleCity from "./pages/singleCity/SingleCity";
 
 //Components
 import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 
 const App = (): JSX.Element => {
     const handleGetCityWeather = (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,6 +36,7 @@ const App = (): JSX.Element => {
                         <Route exact path="/city" component={SingleCity} />
                     </Switch>
                 </div>
+                <Footer />
             </ThemeProvider>
         </BrowserRouter>
     );
