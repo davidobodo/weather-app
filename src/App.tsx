@@ -28,8 +28,9 @@ const App = (): JSX.Element => {
                         <Route
                             exact
                             path="/"
-                            component={Home}
-                            render={() => <Home handleGetCityWeather={handleGetCityWeather} />}
+                            render={() => {
+                                return <Home handleGetCityWeather={handleGetCityWeather} />;
+                            }}
                         />
                         <Route exact path="/city" component={SingleCity} />
                     </Switch>
