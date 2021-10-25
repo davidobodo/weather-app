@@ -1,22 +1,33 @@
 import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
+//Styles
 import { defaultTheme } from "./styles/Themes";
 import { GlobalStyles } from "./styles/GlobalStyles";
 
-function App() {
+//Pages
+import Home from "./pages/home/Home";
+import SingleCity from "./pages/singleCity/SingleCity";
+
+//Components
+import Navbar from "./components/navbar/Navbar";
+
+const App = (): JSX.Element => {
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <GlobalStyles />
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={defaultTheme}>
+                <GlobalStyles />
+                <Navbar />
+                <div>
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/city" component={SingleCity} />
+                    </Switch>
+                </div>
+            </ThemeProvider>
+        </BrowserRouter>
     );
-}
+};
 
 export default App;
