@@ -6,4 +6,6 @@ export const StyledNavbar = styled.nav`
     background-color: #fff;
     border-bottom: 1px solid ${({ theme }) => theme.colors.ash};
     box-shadow: 0 8px 9px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
 `;
