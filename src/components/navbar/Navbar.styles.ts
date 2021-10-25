@@ -8,4 +8,5 @@ export const StyledNavbar = styled.nav`
     box-shadow: 0 8px 9px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
+    justify-content: space-between;
 `;

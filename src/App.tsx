@@ -14,11 +14,15 @@ import SingleCity from "./pages/singleCity/SingleCity";
 import Navbar from "./components/navbar/Navbar";
 
 const App = (): JSX.Element => {
+    const handleGetCityWeather = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(e, "Get here");
+    };
     return (
         <BrowserRouter>
             <ThemeProvider theme={defaultTheme}>
                 <GlobalStyles />
-                <Navbar />
+                <Navbar handleGetCityWeather={handleGetCityWeather} />
                 <div>
                     <Switch>
                         <Route exact path="/" component={Home} />
