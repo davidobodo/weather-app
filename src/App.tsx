@@ -25,7 +25,12 @@ const App = (): JSX.Element => {
                 <Navbar handleGetCityWeather={handleGetCityWeather} />
                 <div>
                     <Switch>
-                        <Route exact path="/" component={Home} />
+                        <Route
+                            exact
+                            path="/"
+                            component={Home}
+                            render={() => <Home handleGetCityWeather={handleGetCityWeather} />}
+                        />
                         <Route exact path="/city" component={SingleCity} />
                     </Switch>
                 </div>

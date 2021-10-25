@@ -1,7 +1,14 @@
 import React from "react";
 
-const Home = (): JSX.Element => {
-    return <div>This is the home</div>;
+import Banner from "../../components/banner/Banner";
+import { IHome } from "./IHome";
+
+const Home: React.FC<IHome> = ({ handleGetCityWeather }): JSX.Element => {
+    return (
+        <div>
+            <Banner handleGetCityWeather={handleGetCityWeather} />
+        </div>
+    );
 };
 
 export default Home;
