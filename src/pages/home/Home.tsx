@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Banner from "../../components/banner/Banner";
 import FavoritesList from "../../components/favoritesList/FavoritesList";
@@ -6,7 +6,27 @@ import FavoritesList from "../../components/favoritesList/FavoritesList";
 import { IHome } from "./IHome";
 import { StyledHome } from "./Home.styles";
 
-const Home: React.FC<IHome> = ({ handleGetCityWeather, searchValue, handleChangeSearchInput }): JSX.Element => {
+import { ILocalStorage } from "../../interfaces";
+
+import { getLocalStorage } from "../../utils";
+import { LOCAL_STORAGE_KEY } from "../../constants";
+
+const Home: React.FC<IHome> = ({
+    handleGetCityWeather,
+    searchValue,
+    handleChangeSearchInput,
+    onEditFavourites
+}): JSX.Element => {
+    const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+
+    const [myFavourites, setMyfavourites] = useState<string[]>(storage.favourites);
+
+    const handleOnEditFavourites = (place: string) => {
+        const newList = myFavourites.filter((item: string) => item !== place);
+        setMyfavourites(newList);
+        onEditFavourites(place);
+    };
+
     return (
         <StyledHome>
             <Banner
@@ -17,7 +37,7 @@ const Home: React.FC<IHome> = ({ handleGetCityWeather, searchValue, handleChange
 
             <section className="favourites">
                 <h1>Favourties</h1>
-                <FavoritesList />
+                <FavoritesList list={myFavourites} onEditFavourites={handleOnEditFavourites} />
             </section>
         </StyledHome>
     );

@@ -11,6 +11,7 @@ import { getPlaceWeather } from "../../apis";
 import { ISinglePlace } from "./ISinglePlace";
 import { IWeatherData } from "../../interfaces";
 import { ILocalStorage } from "../../interfaces";
+
 import { getLocalStorage } from "../../utils";
 import { LOCAL_STORAGE_KEY } from "../../constants";
 
@@ -44,8 +45,6 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
         setIsAmongFavourites(!isAmongFavourites);
         onEditFavourites(place);
     };
-
-    console.log(isAmongFavourites);
 
     //-------------------------------------------------------
     //Current displayed weather

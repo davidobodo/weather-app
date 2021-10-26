@@ -1,5 +1,5 @@
-export interface IHome {
-    handleGetCityWeather: (e: React.FormEvent<HTMLFormElement>) => void;
-    searchValue: string;
-    handleChangeSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+import { ISearch } from "../../interfaces";
+
+export interface IHome extends ISearch {
+    onEditFavourites: (place: string) => void;
 }

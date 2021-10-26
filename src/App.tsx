@@ -40,6 +40,7 @@ const App = (): JSX.Element => {
                                     handleGetCityWeather={handleGetCityWeather}
                                     searchValue={searchValue}
                                     handleChangeSearchInput={handleChangeSearchInput}
+                                    onEditFavourites={onEditFavourites}
                                 />
                             );
                         }}
