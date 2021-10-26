@@ -17,3 +17,21 @@ export const MOST_POPULOUS_COUNTRIES = [
     "Egypt",
     "Vietnam"
 ];
+
+export const MOST_POPULOUS_CITIES = [
+    "Tokyo",
+    "Delhi",
+    "Shanghai",
+    "Sao Paulo",
+    "Mexico City",
+    "Dhaka",
+    "Cairo",
+    "Beijing",
+    "Mumbai",
+    "Osaka",
+    "Karachi",
+    "Chongqing",
+    "Istanbul",
+    "Buenos Aires",
+    "Kolkata"
+];

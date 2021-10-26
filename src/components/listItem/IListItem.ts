@@ -1,4 +1,4 @@
 export interface IListItem {
     name: string;
-    onEditFavourites: (place: string) => void;
+    onRemoveItem: (place: string) => void;
 }

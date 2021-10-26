@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "../utils";
 
 import { ILocalStorage } from "../interfaces";
-import { LOCAL_STORAGE_KEY } from "../constants";
+import { LOCAL_STORAGE_KEY, MOST_POPULOUS_CITIES } from "../constants";
 
 const useAppStorage = () => {
     //-------------------------------------------------------
@@ -57,7 +57,7 @@ const useAppStorage = () => {
             storage = {
                 notes: {},
                 favourites: [],
-                top15: []
+                top15: MOST_POPULOUS_CITIES.sort()
             };
             setLocalStorage(LOCAL_STORAGE_KEY, storage);
         }
