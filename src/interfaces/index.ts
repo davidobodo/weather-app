@@ -50,3 +50,9 @@ export interface IWeatherData {
         unit: string;
     };
 }
+
+export interface ILocalStorage {
+    notes?: any;
+    favourites?: any;
+    top15?: any;
+}
