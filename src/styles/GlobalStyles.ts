@@ -51,9 +51,14 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 1.6rem;
     }
 
-    input, textarea{
+    input, textarea, a{
         font-family: 'Ubuntu', sans-serif;
         font-size: 1.4rem;
+    }
+
+    a{
+        text-decoration: none;
+        color: #000;
     }
 
 `;

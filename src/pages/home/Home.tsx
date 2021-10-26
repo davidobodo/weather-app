@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Banner from "../../components/banner/Banner";
-import CustomList from "../../components/customList/CustomList";
+import CustomTable from "../../components/customTable/CustomTable";
 
 import { IHome } from "./IHome";
 import { StyledHome } from "./Home.styles";
@@ -63,13 +63,15 @@ const Home: React.FC<IHome> = ({
                 handleChangeSearchInput={handleChangeSearchInput}
             />
 
-            <section className="favourites">
-                <h1>Favourties</h1>
-                <CustomList list={myFavourites} onRemoveItem={handleOnEditFavourites} />
-            </section>
-            <section className="favourites">
-                <h1>{top15.length} Most Populous Cities</h1>
-                <CustomList list={top15} onRemoveItem={handleOnEditTop15} />
+            <section className="content">
+                <nav>
+                    <a href="" className="active">
+                        Top {top15.length}
+                    </a>
+                    <a href="">Favourites</a>
+                </nav>
+
+                <CustomTable list={top15} onRemoveItem={handleOnEditTop15} />
             </section>
         </StyledHome>
     );
