@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 const useDetectUserLocation = () => {
     const history = useHistory();
 
-    async function showPosition(position: any) {
+    async function handelUserAccept(position: any) {
         const { latitude, longitude } = position.coords;
 
         try {
@@ -21,9 +21,14 @@ const useDetectUserLocation = () => {
         }
     }
 
+    const handleUserDecline = (error: any) => {
+        console.log(error);
+        alert("Permission not granted");
+    };
+
     useEffect(() => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, console.log);
+            navigator.geolocation.getCurrentPosition(handelUserAccept, handleUserDecline);
         }
     }, []);
 

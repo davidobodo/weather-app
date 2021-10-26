@@ -51,4 +51,9 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 1.6rem;
     }
 
+    input, textarea{
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 1.4rem;
+    }
+
 `;
