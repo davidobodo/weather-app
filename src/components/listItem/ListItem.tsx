@@ -7,7 +7,7 @@ import { IListItem } from "./IListItem";
 const ListItem: React.FC<IListItem> = ({ name, onEditFavourites }) => {
     return (
         <StyledListItem>
-            <Link to="/city">{name}</Link>
+            <Link to={`/place?value=${name}`}>{name}</Link>
             <button type="button" onClick={() => onEditFavourites(name)}>
                 Remove
             </button>
