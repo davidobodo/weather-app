@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 //Styles
@@ -8,37 +8,60 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 
 //Pages
 import Home from "./pages/home/Home";
-import SingleCity from "./pages/singleCity/SingleCity";
+import SinglePlace from "./pages/singlePlace/SinglePlace";
 
 //Components
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 
 const App = (): JSX.Element => {
-    const handleGetCityWeather = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log(e, "Get here");
+    const history = useHistory();
+
+    //Search query
+    const [searchValue, setSearchValue] = useState("");
+    const handleChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value);
     };
+
+    const handleGetCityWeather = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        history.push(`/place?${searchValue}`);
+    };
+
     return (
-        <BrowserRouter>
-            <ThemeProvider theme={defaultTheme}>
-                <GlobalStyles />
-                <Navbar handleGetCityWeather={handleGetCityWeather} />
-                <div>
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => {
-                                return <Home handleGetCityWeather={handleGetCityWeather} />;
-                            }}
-                        />
-                        <Route exact path="/city" component={SingleCity} />
-                    </Switch>
-                </div>
-                <Footer />
-            </ThemeProvider>
-        </BrowserRouter>
+        <ThemeProvider theme={defaultTheme}>
+            <GlobalStyles />
+            <Navbar
+                handleGetCityWeather={handleGetCityWeather}
+                searchValue={searchValue}
+                handleChangeSearchInput={handleChangeSearchInput}
+            />
+            <div>
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        render={() => {
+                            return (
+                                <Home
+                                    handleGetCityWeather={handleGetCityWeather}
+                                    searchValue={searchValue}
+                                    handleChangeSearchInput={handleChangeSearchInput}
+                                />
+                            );
+                        }}
+                    />
+                    <Route
+                        exact
+                        path="/place"
+                        render={({ location, history }) => {
+                            return <SinglePlace location={location} history={history} />;
+                        }}
+                    />
+                </Switch>
+            </div>
+            <Footer />
+        </ThemeProvider>
     );
 };
 

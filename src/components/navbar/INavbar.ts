@@ -1,3 +1,3 @@
-export interface INavbar {
-    handleGetCityWeather: (e: React.FormEvent<HTMLFormElement>) => void;
-}
+import { ISearch } from "../../interfaces";
+
+export interface INavbar extends ISearch {}

@@ -1,3 +1,3 @@
-export interface IBanner {
-    handleGetCityWeather: (e: React.FormEvent<HTMLFormElement>) => void;
-}
+import { ISearch } from "../../interfaces";
+
+export interface IBanner extends ISearch {}
