@@ -21,16 +21,16 @@ import useDetectUserLocation from "./hooks/useDetectUserLocation";
 const App = (): JSX.Element => {
     const { searchValue, handleChangeSearchInput, handleGetCityWeather } = useSearchValue();
     const { onSubmitNote, onEditFavourites } = useAppStorage();
-    useDetectUserLocation();
+    // useDetectUserLocation();
 
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalStyles />
-            <Navbar
+            {/* <Navbar
                 handleGetCityWeather={handleGetCityWeather}
                 searchValue={searchValue}
                 handleChangeSearchInput={handleChangeSearchInput}
-            />
+            /> */}
             <div>
                 <Switch>
                     <Route

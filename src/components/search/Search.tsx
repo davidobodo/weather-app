@@ -5,7 +5,7 @@ import { StyledSearch } from "./Search.styles";
 
 const Search: React.FC<ISearch> = ({ handleGetCityWeather, searchValue, handleChangeSearchInput }): JSX.Element => {
     return (
-        <StyledSearch onSubmit={handleGetCityWeather}>
+        <StyledSearch onSubmit={handleGetCityWeather} className="search-form">
             <input type="text" placeholder="Enter a city..." value={searchValue} onChange={handleChangeSearchInput} />
             <button type="submit">
                 <SearchIcon />
