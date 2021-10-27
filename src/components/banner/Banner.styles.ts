@@ -25,10 +25,6 @@ export const StyledBanner = styled.header`
     color: #fff;
     padding: 2rem;
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        max-width: 50rem;
-    }
-
     h1 {
         margin-bottom: 2rem;
         font-size: 3.6rem;

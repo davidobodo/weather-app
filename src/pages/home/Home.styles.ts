@@ -8,6 +8,7 @@ export const StyledHome = styled.div`
         max-width: 1024px;
         margin: auto;
         margin-bottom: 5rem;
+        padding: 0px 2rem;
 
         h3 {
             margin-bottom: 2rem;
