@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
+import Button from "../../components/button/Button";
 
 //Styles
 import { StyledSingleCity } from "./SinglePlace.styles";
@@ -125,9 +126,14 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
                 />
             </div>
             <div className="single-city__right-column">
-                <button type="button" onClick={handleUpdateFavourites}>
-                    {isAmongFavourites ? "Remove from Favourites" : "Add to favourites"}
-                </button>
+                <div className="btn-favourite">
+                    <Button
+                        type="button"
+                        text={isAmongFavourites ? "Remove from Favourites" : "Add to favourites"}
+                        onClick={handleUpdateFavourites}
+                    />
+                </div>
+
                 <form onSubmit={handleSubmitNote}>
                     <div className="form-field">
                         <label htmlFor="notes">Notes</label>
@@ -140,11 +146,9 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
                             onChange={handleUpdateNote}
                         ></textarea>
                     </div>
-                    <div>
-                        <button type="reset" onClick={handleClearNote}>
-                            Clear
-                        </button>
-                        <button type="submit">Save</button>
+                    <div className="single-city__right-column__cta">
+                        <Button type="reset" text="Clear" variant="outlined" onClick={handleClearNote} fluid={false} />
+                        <Button type="submit" text="Save" fluid={false} />
                     </div>
                 </form>
             </div>

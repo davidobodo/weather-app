@@ -11,17 +11,20 @@ const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
     const { observation_time: time, temperature, weather_icons, pressure, wind_degree, wind_dir, wind_speed } = current;
     return (
         <StyledWeatherInfo>
-            <p>{name}</p>
-            <p>{region}</p>
-            <p>{country}</p>
-            <p>{timezone}</p>
-            <p>{time}</p>
-            <p>{temperature}</p>
-            <p>{weather_icons[0]}</p>
-            <p>{pressure}</p>
-            <p>{wind_degree}</p>
-            <p>{wind_dir}</p>
-            <p>{wind_speed}</p>
+            <h1 className="temp">{temperature}&deg; C</h1>
+            <h2 className="city">{name}</h2>
+            {/* <p>{name}</p> */}
+            {/* <p>{region}</p> */}
+            <h4 className="country">{country}</h4>
+            <p className="time">
+                {time} {timezone}
+            </p>
+
+            <img src={weather_icons[0]} alt="" />
+            <p>Pressure : {pressure}</p>
+            <p>Wind Degree : {wind_degree}</p>
+            <p>Wind Direction: {wind_dir}</p>
+            <p>Wind Speed: {wind_speed} km/hr</p>
         </StyledWeatherInfo>
     );
 };

@@ -26,11 +26,11 @@ const App = (): JSX.Element => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalStyles />
-            {/* <Navbar
+            <Navbar
                 handleGetCityWeather={handleGetCityWeather}
                 searchValue={searchValue}
                 handleChangeSearchInput={handleChangeSearchInput}
-            /> */}
+            />
             <div>
                 <Switch>
                     <Route
