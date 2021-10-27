@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 //Styles
@@ -24,15 +24,19 @@ const App = (): JSX.Element => {
     const { onSubmitNote, onEditFavourites } = useAppStorage();
     // useDetectUserLocation();
     useScrollToTop();
+    const location = useLocation();
 
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalStyles />
-            <Navbar
-                handleGetCityWeather={handleGetCityWeather}
-                searchValue={searchValue}
-                handleChangeSearchInput={handleChangeSearchInput}
-            />
+            {location.pathname.includes("place") && (
+                <Navbar
+                    handleGetCityWeather={handleGetCityWeather}
+                    searchValue={searchValue}
+                    handleChangeSearchInput={handleChangeSearchInput}
+                />
+            )}
+
             <div>
                 <Switch>
                     <Route

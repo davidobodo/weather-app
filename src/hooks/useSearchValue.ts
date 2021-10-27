@@ -10,6 +10,8 @@ const useSearchValue = () => {
 
     const handleGetCityWeather = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (searchValue.trim().length === 0) return;
+        setSearchValue("");
         history.push(`/place?value=${searchValue}`);
     };
 

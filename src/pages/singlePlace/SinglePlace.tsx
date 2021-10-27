@@ -60,37 +60,44 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
                         />
                     </div>
                     <div className="single-city__right-column">
-                        <div className="btn-favourite">
-                            <Button
-                                type="button"
-                                text={isAmongFavourites ? "Remove from Favourites" : "Add to favourites"}
-                                onClick={handleUpdateFavourites}
-                            />
-                        </div>
-
-                        <form onSubmit={handleSubmitNote}>
-                            <div className="form-field">
-                                <label htmlFor="notes">Notes</label>
-                                <textarea
-                                    name="notes"
-                                    id="notes"
-                                    cols={30}
-                                    rows={10}
-                                    value={note}
-                                    onChange={handleUpdateNote}
-                                ></textarea>
-                            </div>
-                            <div className="single-city__right-column__cta">
+                        <div className="blurred-bg"></div>
+                        <div className="single-city__right-column__content">
+                            <div className="btn-favourite">
                                 <Button
-                                    type="reset"
-                                    text="Clear"
-                                    variant="outlined"
-                                    onClick={handleClearNote}
-                                    fluid={false}
+                                    type="button"
+                                    text={
+                                        isAmongFavourites
+                                            ? `Remove ${place} from Favourites`
+                                            : `Add ${place} to favourites`
+                                    }
+                                    onClick={handleUpdateFavourites}
                                 />
-                                <Button type="submit" text="Save" fluid={false} />
                             </div>
-                        </form>
+
+                            <form onSubmit={handleSubmitNote}>
+                                <div className="form-field">
+                                    <label htmlFor="notes">{place} Notes</label>
+                                    <textarea
+                                        name="notes"
+                                        id="notes"
+                                        cols={30}
+                                        rows={10}
+                                        value={note}
+                                        onChange={handleUpdateNote}
+                                    ></textarea>
+                                </div>
+                                <div className="single-city__right-column__cta">
+                                    <Button
+                                        type="reset"
+                                        text="Clear"
+                                        variant="outlined"
+                                        onClick={handleClearNote}
+                                        fluid={false}
+                                    />
+                                    <Button type="submit" text="Save" fluid={false} />
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </>
             )}

@@ -5,5 +5,8 @@ export const defaultTheme = {
     },
     variables: {
         maxWidth: "1024px"
+    },
+    breakpoints: {
+        tablet: "768px"
     }
 };

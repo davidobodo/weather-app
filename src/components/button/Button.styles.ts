@@ -11,6 +11,7 @@ export const StyledButton = styled.button<IButton>`
     font-weight: 500;
     background-color: ${({ theme }) => theme.colors.red};
     color: #fff;
+    text-transform: capitalize;
 
     &.outlined {
         border: 1px solid ${({ theme }) => theme.colors.red};

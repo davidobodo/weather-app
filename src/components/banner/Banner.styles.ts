@@ -23,6 +23,11 @@ export const StyledBanner = styled.header`
     background-repeat: no-repeat;
     background-position: bottom;
     color: #fff;
+    padding: 2rem;
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        max-width: 50rem;
+    }
 
     h1 {
         margin-bottom: 2rem;
@@ -31,6 +36,10 @@ export const StyledBanner = styled.header`
     }
 
     .search-form {
-        width: 50rem;
+        width: 100%;
+
+        @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+            max-width: 50rem;
+        }
     }
 `;

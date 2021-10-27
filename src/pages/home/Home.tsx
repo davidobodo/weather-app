@@ -63,14 +63,15 @@ const Home: React.FC<IHome> = ({
                 handleChangeSearchInput={handleChangeSearchInput}
             />
 
-            <section className="content">
-                <nav>
-                    <a href="" className="active">
-                        Top {top15.length}
-                    </a>
-                    <a href="">Favourites</a>
-                </nav>
+            {myFavourites.length > 0 && (
+                <section className="content">
+                    <h3>My Favourites</h3>
+                    <CustomTable list={myFavourites} onRemoveItem={handleOnEditFavourites} />
+                </section>
+            )}
 
+            <section className="content">
+                <h3> Top {top15.length} Most Populous Cities</h3>
                 <CustomTable list={top15} onRemoveItem={handleOnEditTop15} />
             </section>
         </StyledHome>

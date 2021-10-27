@@ -12,6 +12,9 @@ export const StyledCustomTable = styled.table`
     thead {
         border-bottom: 1px solid ${({ theme }) => theme.colors.ash};
         tr {
+            background-color: ${({ theme }) => theme.colors.red};
+            color: #fff;
+
             td {
                 font-weight: 600;
                 font-size: 1.4rem;
@@ -41,6 +44,10 @@ export const StyledCustomTable = styled.table`
         tr {
             border-bottom: 1px solid ${({ theme }) => theme.colors.ash};
 
+            &:nth-child(even) {
+                background-color: #f7f7f8;
+            }
+
             &:last-child {
                 border-bottom: 0px;
             }
@@ -53,6 +60,7 @@ export const StyledCustomTable = styled.table`
                 }
 
                 &:nth-child(2) {
+                    text-transform: capitalize;
                 }
 
                 &:nth-child(3) {

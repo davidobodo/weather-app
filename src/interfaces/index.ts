@@ -26,7 +26,7 @@ export interface IWeatherData {
         uv_index: number;
         visibility: number;
         weather_code: number;
-        weather_description: string[];
+        weather_descriptions: string[];
         weather_icons: string[];
         wind_degree: number;
         wind_dir: string;
