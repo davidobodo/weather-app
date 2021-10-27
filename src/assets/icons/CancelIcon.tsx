@@ -12,8 +12,8 @@ const CancelIcon = (): JSX.Element => {
                         transform="translate(0 8.999) rotate(-45)"
                         fill="none"
                         stroke="#FF385C"
-                        stroke-linecap="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeWidth="2"
                     />
                     <line
                         id="Line_1080"
@@ -22,8 +22,8 @@ const CancelIcon = (): JSX.Element => {
                         transform="translate(0 0) rotate(-45)"
                         fill="none"
                         stroke="#FF385C"
-                        stroke-linecap="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeWidth="2"
                     />
                 </g>
             </g>

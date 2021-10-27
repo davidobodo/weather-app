@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledSingleCity = styled.main`
     padding: 5rem;
     display: flex;
+    min-height: calc(100vh - 8rem);
 
     .single-city__left-column {
         flex: 1;

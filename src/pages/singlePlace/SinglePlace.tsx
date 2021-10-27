@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
 import Button from "../../components/button/Button";
+import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 
 //Styles
 import { StyledSingleCity } from "./SinglePlace.styles";
@@ -99,59 +100,62 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
     //-------------------------------------------------------
     //-------------------------------------------------------
 
-    if (gettingWeatherReport) {
-        return <h1>Loading...</h1>;
-    }
-
-    if (!currentDisplayedWeather) {
-        return <h1>No data</h1>;
-    }
-
     return (
         <StyledSingleCity>
-            <div className="single-city__left-column">
-                <WeatherInfo
-                    // name={name}
-                    // region={region}
-                    // country={country}
-                    // timezone={timezone_id}
-                    // time={observation_time}
-                    // temperature={temperature}
-                    // icon={weather_icons[0] || ""}
-                    // pressure={pressure}
-                    // wind_degree={wind_degree}
-                    // wind_dir={wind_dir}
-                    // wind_speed={wind_speed}
-                    weatherData={currentDisplayedWeather}
-                />
-            </div>
-            <div className="single-city__right-column">
-                <div className="btn-favourite">
-                    <Button
-                        type="button"
-                        text={isAmongFavourites ? "Remove from Favourites" : "Add to favourites"}
-                        onClick={handleUpdateFavourites}
-                    />
-                </div>
+            {gettingWeatherReport && <OverlayLoader />}
+            {currentDisplayedWeather && (
+                <>
+                    <div className="single-city__left-column">
+                        <WeatherInfo
+                            // name={name}
+                            // region={region}
+                            // country={country}
+                            // timezone={timezone_id}
+                            // time={observation_time}
+                            // temperature={temperature}
+                            // icon={weather_icons[0] || ""}
+                            // pressure={pressure}
+                            // wind_degree={wind_degree}
+                            // wind_dir={wind_dir}
+                            // wind_speed={wind_speed}
+                            weatherData={currentDisplayedWeather}
+                        />
+                    </div>
+                    <div className="single-city__right-column">
+                        <div className="btn-favourite">
+                            <Button
+                                type="button"
+                                text={isAmongFavourites ? "Remove from Favourites" : "Add to favourites"}
+                                onClick={handleUpdateFavourites}
+                            />
+                        </div>
 
-                <form onSubmit={handleSubmitNote}>
-                    <div className="form-field">
-                        <label htmlFor="notes">Notes</label>
-                        <textarea
-                            name="notes"
-                            id="notes"
-                            cols={30}
-                            rows={10}
-                            value={note}
-                            onChange={handleUpdateNote}
-                        ></textarea>
+                        <form onSubmit={handleSubmitNote}>
+                            <div className="form-field">
+                                <label htmlFor="notes">Notes</label>
+                                <textarea
+                                    name="notes"
+                                    id="notes"
+                                    cols={30}
+                                    rows={10}
+                                    value={note}
+                                    onChange={handleUpdateNote}
+                                ></textarea>
+                            </div>
+                            <div className="single-city__right-column__cta">
+                                <Button
+                                    type="reset"
+                                    text="Clear"
+                                    variant="outlined"
+                                    onClick={handleClearNote}
+                                    fluid={false}
+                                />
+                                <Button type="submit" text="Save" fluid={false} />
+                            </div>
+                        </form>
                     </div>
-                    <div className="single-city__right-column__cta">
-                        <Button type="reset" text="Clear" variant="outlined" onClick={handleClearNote} fluid={false} />
-                        <Button type="submit" text="Save" fluid={false} />
-                    </div>
-                </form>
-            </div>
+                </>
+            )}
         </StyledSingleCity>
     );
 };

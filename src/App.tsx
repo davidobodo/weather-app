@@ -17,11 +17,13 @@ import Footer from "./components/footer/Footer";
 import useSearchValue from "./hooks/useSearchValue";
 import useAppStorage from "./hooks/useAppStorage";
 import useDetectUserLocation from "./hooks/useDetectUserLocation";
+import useScrollToTop from "./hooks/useScrollToTop";
 
 const App = (): JSX.Element => {
     const { searchValue, handleChangeSearchInput, handleGetCityWeather } = useSearchValue();
     const { onSubmitNote, onEditFavourites } = useAppStorage();
     // useDetectUserLocation();
+    useScrollToTop();
 
     return (
         <ThemeProvider theme={defaultTheme}>
