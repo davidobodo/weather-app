@@ -9,7 +9,7 @@ const Navbar: React.FC<INavbar> = ({ handleGetCityWeather, searchValue, handleCh
     const location = useLocation();
     return (
         <StyledNavbar>
-            <Link to="/">app logo</Link>
+            <Link to="/">Home</Link>
 
             {location.pathname.includes("place") && (
                 <Search

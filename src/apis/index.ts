@@ -11,11 +11,13 @@ export const getPlaceWeather = async (searchQuery: string) => {
 
         res = await res.json();
 
-        if (res.success === false) {
-            throw res;
-        } else {
-            return res;
-        }
+        // if (res.success === false) {
+        //     throw res;
+        // } else {
+        //     return res;
+        // }
+
+        return res;
     } catch (err) {
         throw err;
     }

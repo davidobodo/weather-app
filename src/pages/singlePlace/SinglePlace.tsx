@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
 import Button from "../../components/button/Button";
 import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 
 //Styles
 import { StyledSingleCity } from "./SinglePlace.styles";
-
-//Apis
-import { getPlaceWeather } from "../../apis";
 
 //Interfaces
 import { ISinglePlace } from "./ISinglePlace";
@@ -17,88 +14,29 @@ import { ILocalStorage } from "../../interfaces";
 import { getLocalStorage } from "../../utils";
 import { LOCAL_STORAGE_KEY } from "../../constants";
 
+import useSinglePlaceNote from "../../hooks/useSinglePlaceNote";
+import useSinglePlaceFavourite from "../../hooks/useSinglePlaceFavourite";
+import useSinglePlaceWeatherData from "../../hooks/useSinglePlaceWeatherData";
+
 const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, onEditFavourites }): JSX.Element => {
     const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
     const place = new URLSearchParams(location.search).get("value") || "";
 
-    //-------------------------------------------------------
-    //Place Notes
-    //-------------------------------------------------------
-    const [note, setNote] = useState("");
-    const handleUpdateNote = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setNote(e.target.value);
-    };
+    const { note, handleSubmitNote, handleClearNote, handleUpdateNote, setNote } = useSinglePlaceNote(
+        onSubmitNote,
+        place
+    );
+    const { isAmongFavourites, handleUpdateFavourites, setIsAmongFavourites } = useSinglePlaceFavourite(
+        onEditFavourites,
+        place
+    );
 
-    const handleSubmitNote = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onSubmitNote(place, note);
-    };
-
-    const handleClearNote = () => {
-        setNote("");
-        onSubmitNote(place, "");
-    };
-
-    //-------------------------------------------------------
-    //Favourites
-    //-------------------------------------------------------
-    const [isAmongFavourites, setIsAmongFavourites] = useState(false);
-    const handleUpdateFavourites = () => {
-        setIsAmongFavourites(!isAmongFavourites);
-        onEditFavourites(place);
-    };
-
-    //-------------------------------------------------------
-    //Current displayed weather
-    //-------------------------------------------------------
-    const [currentDisplayedWeather, setCurrentDisplayedWeather] = useState<IWeatherData | null>(null);
-    const [gettingWeatherReport, setGettingWeatherReport] = useState(true);
-
-    const requestPlaceWeather = async (place: string) => {
-        try {
-            const res: IWeatherData = await getPlaceWeather(place);
-
-            setCurrentDisplayedWeather(res);
-            //TODO: Clear search input
-        } catch (err) {
-            console.log(err, "THE ERROR");
-        } finally {
-            setGettingWeatherReport(false);
-        }
-    };
-
-    useEffect(() => {
-        if (place.length > 0) {
-            //Check for notes
-            if (storage?.notes && storage.notes[place]) {
-                setNote(storage.notes[place]);
-            } else {
-                setNote("");
-            }
-
-            //Check for Favourites
-            if (storage?.favourites) {
-                const isPresent = storage?.favourites.find(
-                    (item: string) => item.toLowerCase() === place.toLowerCase()
-                );
-
-                if (isPresent) {
-                    setIsAmongFavourites(true);
-                } else {
-                    setIsAmongFavourites(false);
-                }
-            }
-
-            setCurrentDisplayedWeather(null);
-            requestPlaceWeather(place);
-        } else {
-            //If user visits this url without any place query
-            history.push("/");
-        }
-    }, [place, history]);
-    //-------------------------------------------------------
-    //-------------------------------------------------------
-    //-------------------------------------------------------
+    const { gettingWeatherReport, currentDisplayedWeather, noWeatherData } = useSinglePlaceWeatherData(
+        place,
+        storage,
+        setNote,
+        setIsAmongFavourites
+    );
 
     return (
         <StyledSingleCity>
@@ -156,6 +94,8 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
                     </div>
                 </>
             )}
+
+            {noWeatherData && <h1>Sorry no data for that location</h1>}
         </StyledSingleCity>
     );
 };
