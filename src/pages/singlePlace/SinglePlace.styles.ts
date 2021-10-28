@@ -35,7 +35,7 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
         width: 40rem;
         flex-shrink: 0;
         position: relative;
-        backdrop-filter: blur(1rem) saturate(1.1);
+        backdrop-filter: blur(1.5rem) saturate(1.1);
         right: 0;
         min-height: 100 vh;
 

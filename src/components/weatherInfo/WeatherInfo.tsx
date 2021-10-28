@@ -19,10 +19,10 @@ const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
     //     wind_speed
     // } = current;
 
-    const { weather, main, wind, name } = weatherData as IWeatherData;
+    const { weather, main, wind, name, sys } = weatherData as IWeatherData;
 
     const { temp: temperature, pressure, humidity } = main;
-    const { description } = weather[0];
+    const { description, icon } = weather[0];
 
     const { speed: wind_speed, deg: wind_degree } = wind;
 
@@ -30,13 +30,15 @@ const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
         <StyledWeatherInfo>
             <div className="top-section">
                 <div>
-                    <h1 className="temp">{temperature}&deg; C</h1>
+                    <h1 className="temp">{(temperature - 273).toFixed(1)}&deg; C</h1>
                     <h1>{description}</h1>
+
+                    <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="" />
                 </div>
 
                 <div className="top-section__place">
                     <h2 className="city">{name}</h2>
-                    {/* <h3 className="country">{country}</h3> */}
+                    {/* <h3 className="country">{sys.country}</h3> */}
 
                     {/* <p className="time">
                         {time} {timezone}
@@ -53,19 +55,20 @@ const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
             <div className="bottom-section">
                 <div className="col">
                     <h3>Pressure</h3>
-                    <h3>{pressure}</h3>
+                    <h3>{pressure} hPa</h3>
+                </div>
+                <div className="col">
+                    <h3>Humidity</h3>
+                    <h3>{humidity} %</h3>
                 </div>
                 <div className="col">
                     <h3>Wind Degree</h3>
-                    <h3>{wind_degree}</h3>
+                    <h3>{wind_degree} &deg;</h3>
                 </div>
-                {/* <div className="col">
-                    <h3>Wind Direction</h3>
-                    <h3>{wind_dir}</h3>
-                </div> */}
+
                 <div className="col">
                     <h3>Wind Speed</h3>
-                    <h3>{wind_speed}</h3>
+                    <h3>{wind_speed} m/s</h3>
                 </div>
                 {/* <p>Pressure ------------------------------ {pressure}</p>
                 <p>Wind Degree --------------------------- {wind_degree}</p>
