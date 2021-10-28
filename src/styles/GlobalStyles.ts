@@ -14,7 +14,11 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0px;
         padding: 0px;
         box-sizing: border-box !important;
-        font-family: 'Ubuntu', sans-serif;
+        // font-family: 'Ubuntu', sans-serif;
+
+        // font-family: 'Inter', sans-serif;
+
+        font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif
     }
 
 

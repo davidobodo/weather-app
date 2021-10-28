@@ -20,7 +20,8 @@ const Home: React.FC<IHome> = ({
 }): JSX.Element => {
     const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
 
-    const [myFavourites, setMyfavourites] = useState<string[]>(storage?.favourites || []);
+    // const [myFavourites, setMyfavourites] = useState<string[]>(storage?.favourites || []);
+    const [myFavourites, setMyfavourites] = useState<string[]>(MOST_POPULOUS_CITIES.slice(0, 7));
     const handleOnEditFavourites = (place: string) => {
         const newList = myFavourites.filter((item: string) => item !== place);
         setMyfavourites(newList);

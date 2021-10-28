@@ -25,6 +25,15 @@ export const StyledSingleCity = styled.main`
         flex-shrink: 0;
         position: relative;
 
+        // backdrop-filter: blur(7
+        //     px
+        //     ) saturate(1.1);
+        //         position: fixed;
+        //         right: 0;
+        //         min-height: 100
+        //     vh
+        //     ;
+
         .blurred-bg {
             position: absolute;
             top: 0px;
@@ -76,6 +85,10 @@ export const StyledSingleCity = styled.main`
             border-radius: 1rem;
             margin-bottom: 2.4rem;
             resize: none;
+
+            // background-color: transparent;
+            // color: #fff;
+            // border-color: rgb(180 180 180 / 40%);
         }
     }
 `;
