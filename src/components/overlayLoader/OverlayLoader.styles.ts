@@ -9,4 +9,5 @@ export const StyledOverlayLoader = styled.div`
     height: 100vh;
     left: 0px;
     top: 0px;
+    z-index: 20;
 `;

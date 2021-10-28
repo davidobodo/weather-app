@@ -66,25 +66,12 @@ const SingleCity: React.FC<ISinglePlace> = ({
                                 handleGetCityWeather={handleGetCityWeather}
                                 searchValue={searchValue}
                                 handleChangeSearchInput={handleChangeSearchInput}
+                                isInteractive={true}
                             />
                         </header>
-                        <WeatherInfo
-                            // name={name}
-                            // region={region}
-                            // country={country}
-                            // timezone={timezone_id}
-                            // time={observation_time}
-                            // temperature={temperature}
-                            // icon={weather_icons[0] || ""}
-                            // pressure={pressure}
-                            // wind_degree={wind_degree}
-                            // wind_dir={wind_dir}
-                            // wind_speed={wind_speed}
-                            weatherData={currentDisplayedWeather}
-                        />
+                        <WeatherInfo weatherData={currentDisplayedWeather} />
                     </div>
                     <div className="single-city__right-column">
-                        {/* <div className="blurred-bg"></div> */}
                         <div className="single-city__right-column__content">
                             <div className="btn-favourite">
                                 <Button

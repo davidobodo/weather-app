@@ -3,23 +3,24 @@ import styled from "styled-components";
 import { ISinglePlaceStyles } from "./ISinglePlace";
 
 export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
-    display: flex;
     min-height: 100vh;
-
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
+    background-image: ${({ bgImg }) =>
+        `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${bgImg});`};
 
-    ${({ bgImg }) =>
-        bgImg &&
-        `
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url(${bgImg});
-    `}
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        display: flex;
+    }
 
     .single-city__left-column {
         flex: 1;
-        padding: 6rem;
+        padding: 3rem;
+
+        @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+            padding: 6rem;
+        }
 
         &__header {
             display: flex;
@@ -32,12 +33,15 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
     }
 
     .single-city__right-column {
-        width: 40rem;
         flex-shrink: 0;
         position: relative;
-        backdrop-filter: blur(1.5rem) saturate(1.1);
         right: 0;
-        min-height: 100 vh;
+
+        @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+            backdrop-filter: blur(1.5rem) saturate(1.1);
+            width: 40rem;
+            min-height: 100vh;
+        }
 
         &__content {
             position: relative;
@@ -46,7 +50,19 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
         }
 
         .btn-favourite {
-            margin-bottom: 2.4rem;
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            padding: 2rem;
+            backdrop-filter: blur(1.5rem) saturate(1.1);
+
+            @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+                margin-bottom: 2.4rem;
+                position: static;
+                padding: 0px;
+                backdrop-filter: none;
+            }
         }
 
         &__cta {
@@ -71,14 +87,13 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
         }
 
         textarea {
-            border: 1px solid ${({ theme }) => theme.colors.ash};
+            border: 1px solid rgb(180 180 180 / 40%);
             border-radius: 1rem;
             margin-bottom: 2.4rem;
             resize: none;
 
             background-color: transparent;
             color: #fff;
-            border-color: rgb(180 180 180 / 40%);
             padding: 2rem;
         }
     }
