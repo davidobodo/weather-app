@@ -29,13 +29,13 @@ const App = (): JSX.Element => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalStyles />
-            {location.pathname.includes("place") && (
+            {/* {location.pathname.includes("place") && (
                 <Navbar
                     handleGetCityWeather={handleGetCityWeather}
                     searchValue={searchValue}
                     handleChangeSearchInput={handleChangeSearchInput}
                 />
-            )}
+            )} */}
 
             <div>
                 <Switch>
