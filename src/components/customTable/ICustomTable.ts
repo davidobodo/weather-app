@@ -1,4 +1,6 @@
+import { IWeatherData } from "../../interfaces";
+
 export interface ICustomTable {
-    list: string[];
+    list: IWeatherData[];
     onRemoveItem: (place: string) => void;
 }

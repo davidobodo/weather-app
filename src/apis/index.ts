@@ -1,5 +1,7 @@
 // const BASE_URL = "http://api.weatherstack.com";
 
+import { IWeatherData } from "../interfaces";
+
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 /**
  *
@@ -14,8 +16,6 @@ export const getPlaceWeather = async (searchQuery: string) => {
 
         res = await res.json();
 
-        console.log(res, "TEH FINAL RESPONSE");
-
         // if (res.success === false) {
         //     throw res;
         // } else {
@@ -26,4 +26,25 @@ export const getPlaceWeather = async (searchQuery: string) => {
     } catch (err) {
         throw err;
     }
+};
+
+/**
+ *
+ * @param cities List of cities
+ * @returns Array of cities weather details
+ */
+export const getWeatherInCities = async (cities: string[]): Promise<IWeatherData[]> => {
+    // export const getWeatherInCities = async (cities: string[]): Promise<any[]> => {
+    const result = cities.map((city: string) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await getPlaceWeather(city);
+                resolve(res);
+            } catch (err) {
+                reject(err);
+            }
+        });
+    });
+    const allResults: IWeatherData[] = (await Promise.all(result)) as IWeatherData[];
+    return allResults;
 };

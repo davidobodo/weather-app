@@ -6,7 +6,7 @@ export const StyledWeatherInfo = styled.section`
     justify-content: space-between;
     background-color: transparent;
     color: #fff;
-    padding-top: 3rem;
+    padding-top: 7rem;
     padding-bottom: 3rem;
     min-height: calc(100vh - 16.4rem);
 
@@ -29,6 +29,8 @@ export const StyledWeatherInfo = styled.section`
         }
 
         &__temp-details {
+            text-transform: capitalize;
+
             .temp {
                 font-weight: 400;
                 font-size: 4.4rem;

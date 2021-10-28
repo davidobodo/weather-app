@@ -57,7 +57,8 @@ const SingleCity: React.FC<ISinglePlace> = ({
             <div className="single-place__left-column">
                 <header className="single-place__left-column__header">
                     <Link to="/">
-                        <img src={AppLogo} alt="" />
+                        {/* <img src={AppLogo} alt="" /> */}
+                        Home
                     </Link>
                     <SearchBar
                         handleGetCityWeather={handleGetCityWeather}

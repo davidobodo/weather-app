@@ -13,6 +13,7 @@ import { getLocalStorage } from "../../utils";
 import { LOCAL_STORAGE_KEY, MOST_POPULOUS_CITIES } from "../../constants";
 import { getPlaceWeather } from "../../apis";
 import useStickyNav from "../../hooks/useStickyNav";
+import useHomeLists from "../../hooks/useHomeLists";
 
 const Home: React.FC<IHome> = ({
     handleGetCityWeather,
@@ -23,41 +24,14 @@ const Home: React.FC<IHome> = ({
     const { isNavSticky } = useStickyNav();
     const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
 
-    // const [myFavourites, setMyfavourites] = useState<string[]>(storage?.favourites || []);
-    const [myFavourites, setMyfavourites] = useState<string[]>(MOST_POPULOUS_CITIES.slice(0, 7));
-    const handleOnEditFavourites = (place: string) => {
-        const newList = myFavourites.filter((item: string) => item !== place);
-        setMyfavourites(newList);
-        onEditFavourites(place);
-    };
-
-    const [top15, setTopI5] = useState(MOST_POPULOUS_CITIES.sort());
-    const handleOnEditTop15 = (place: string) => {
-        const newList = top15.filter((item: string) => item !== place);
-        setTopI5(newList);
-        // onEditFavourites(place);
-    };
-    const getWeatherInCities = async (cities: string[]) => {
-        //arrange data in alphabetical order
-        // const result = top15.map((city: string) => {
-        //     return new Promise(async (resolve, reject) => {
-        //         try {
-        //             const res = await getPlaceWeather(city);
-        //             resolve(res);
-        //         } catch (err) {
-        //             reject(err);
-        //         }
-        //     });
-        // });
-        // console.log(result);
-        // const allResults = await Promise.all(result);
-        // console.log(allResults, "THE FINAL RESULTS");
-        // setTopI5(allResults)
-    };
-    useEffect(() => {
-        getWeatherInCities(top15);
-        getWeatherInCities(myFavourites);
-    }, []);
+    const {
+        handleOnEditTop15,
+        top15,
+        myFavourites,
+        handleOnEditFavourites,
+        top15Weather,
+        myFavouritesWeather
+    } = useHomeLists(storage);
 
     return (
         <StyledHome>
@@ -75,17 +49,21 @@ const Home: React.FC<IHome> = ({
                 handleChangeSearchInput={handleChangeSearchInput}
             />
 
-            {myFavourites.length > 0 && (
-                <section className="content">
-                    <h3>My Favourites</h3>
-                    <CustomTable list={myFavourites} onRemoveItem={handleOnEditFavourites} />
-                </section>
-            )}
+            <div className="content">
+                {myFavouritesWeather.length > 0 && (
+                    <section className="content__section">
+                        <h3>My Favourites</h3>
+                        <CustomTable list={myFavouritesWeather} onRemoveItem={handleOnEditFavourites} />
+                    </section>
+                )}
 
-            <section className="content">
-                <h3> Top {top15.length} Most Populous Cities</h3>
-                <CustomTable list={top15} onRemoveItem={handleOnEditTop15} />
-            </section>
+                {top15Weather.length > 0 && (
+                    <section className="content__section">
+                        <h3> Top {top15Weather.length} Most Populous Cities</h3>
+                        <CustomTable list={top15Weather} onRemoveItem={handleOnEditTop15} />
+                    </section>
+                )}
+            </div>
         </StyledHome>
     );
 };

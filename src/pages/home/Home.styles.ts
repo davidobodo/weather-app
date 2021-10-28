@@ -5,8 +5,9 @@ export const StyledHome = styled.div`
         display: none;
 
         &.is-sticky {
-            position: sticky;
+            position: fixed;
             top: 0px;
+            width: 100%;
             z-index: 10;
             display: block;
             animation: slidein 300ms ease-in-out forwards;
@@ -33,13 +34,17 @@ export const StyledHome = styled.div`
     .content {
         max-width: 1024px;
         margin: auto;
-        margin-bottom: 5rem;
-        padding: 0px 2rem;
+        min-height: calc(100vh - 50rem);
 
-        h3 {
-            margin-bottom: 2rem;
-            font-size: 1.8rem;
-            color: #000;
+        &__section {
+            margin-bottom: 5rem;
+            padding: 0px 2rem;
+
+            h3 {
+                margin-bottom: 2rem;
+                font-size: 1.8rem;
+                color: #000;
+            }
         }
     }
 `;

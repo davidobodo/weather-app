@@ -25,6 +25,12 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
         &__header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+
+            a {
+                color: #fff;
+                font-weight: 600;
+            }
 
             img {
                 width: 16rem;
