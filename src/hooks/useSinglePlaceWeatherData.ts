@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { getPlaceWeather } from "../apis";
 
 import { IWeatherData, ILocalStorage } from "../interfaces";
+import { showErrorToast } from "../utils";
 
 const DUMMY_DATA = {
     request: {
@@ -71,6 +72,7 @@ const useSinglePlaceWeatherData = (
             if (res.cod === "404") {
                 setNoWeatherData(true);
                 setCurrentDisplayedWeather(null);
+                showErrorToast(`Oops no data for ${place}`);
             } else {
                 setCurrentDisplayedWeather(res);
             }

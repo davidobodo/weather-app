@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
-import Button from "../../components/button/Button";
+import WeatherInfoCtas from "../../components/weatherInfoCtas/WeatherInfoCtas";
 import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 import SearchBar from "../../components/search/Search";
 //Styles
@@ -54,66 +54,36 @@ const SingleCity: React.FC<ISinglePlace> = ({
             bgImg={getWeatherImg(currentDisplayedWeather ? currentDisplayedWeather.weather[0].description : "")}
         >
             {gettingWeatherReport && <OverlayLoader />}
-            {currentDisplayedWeather && (
-                <>
-                    <div className="single-city__left-column">
-                        <header className="single-city__left-column__header">
-                            <Link to="/">
-                                <img src={AppLogo} alt="" />
-                            </Link>
-
-                            <SearchBar
-                                handleGetCityWeather={handleGetCityWeather}
-                                searchValue={searchValue}
-                                handleChangeSearchInput={handleChangeSearchInput}
-                                isInteractive={true}
-                            />
-                        </header>
-                        <WeatherInfo weatherData={currentDisplayedWeather} />
-                    </div>
-                    <div className="single-city__right-column">
-                        <div className="single-city__right-column__content">
-                            <div className="btn-favourite">
-                                <Button
-                                    type="button"
-                                    text={
-                                        isAmongFavourites
-                                            ? `Remove ${place} from Favourites`
-                                            : `Add ${place} to favourites`
-                                    }
-                                    onClick={handleUpdateFavourites}
-                                />
-                            </div>
-
-                            <form onSubmit={handleSubmitNote}>
-                                <div className="form-field">
-                                    <label htmlFor="notes">{place} Notes</label>
-                                    <textarea
-                                        name="notes"
-                                        id="notes"
-                                        cols={30}
-                                        rows={10}
-                                        value={note}
-                                        onChange={handleUpdateNote}
-                                    ></textarea>
-                                </div>
-                                <div className="single-city__right-column__cta">
-                                    <Button
-                                        type="reset"
-                                        text="Clear"
-                                        variant="outlined"
-                                        onClick={handleClearNote}
-                                        fluid={false}
-                                    />
-                                    <Button type="submit" text="Save" fluid={false} />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </>
-            )}
-
-            {noWeatherData && <h1>Sorry no data for that location</h1>}
+            <div className="single-place__left-column">
+                <header className="single-place__left-column__header">
+                    <Link to="/">
+                        <img src={AppLogo} alt="" />
+                    </Link>
+                    <SearchBar
+                        handleGetCityWeather={handleGetCityWeather}
+                        searchValue={searchValue}
+                        handleChangeSearchInput={handleChangeSearchInput}
+                        isInteractive={true}
+                    />
+                </header>
+                {currentDisplayedWeather && <WeatherInfo weatherData={currentDisplayedWeather} />}
+                {!currentDisplayedWeather && !gettingWeatherReport && (
+                    <h1 className="empty-note">Oops no data for "{place}"</h1>
+                )}
+            </div>
+            <div className="single-place__right-column">
+                {currentDisplayedWeather && (
+                    <WeatherInfoCtas
+                        place={place}
+                        note={note}
+                        isAmongFavourites={isAmongFavourites}
+                        handleClearNote={handleClearNote}
+                        handleUpdateFavourites={handleUpdateFavourites}
+                        handleSubmitNote={handleSubmitNote}
+                        handleUpdateNote={handleUpdateNote}
+                    />
+                )}
+            </div>
         </StyledSinglePlace>
     );
 };
