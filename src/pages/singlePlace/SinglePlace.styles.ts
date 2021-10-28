@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StyledSingleCity = styled.main`
+import { ISinglePlaceStyles } from "./ISinglePlace";
+
+export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
     display: flex;
     min-height: 100vh;
 
@@ -8,8 +10,12 @@ export const StyledSingleCity = styled.main`
     background-repeat: no-repeat;
     background-position: bottom;
 
+    ${({ bgImg }) =>
+        bgImg &&
+        `
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url("https://media.istockphoto.com/photos/transparent-umbrella-under-rain-against-water-drops-splash-background-picture-id1257951336?b=1&k=20&m=1257951336&s=170667a&w=0&h=N_dkdVEznSiN43vNpVzjnnk8xUi4lg1IFK19JXxo5Zg=");
+        url(${bgImg});
+    `}
 
     .single-city__left-column {
         flex: 1;
@@ -32,21 +38,6 @@ export const StyledSingleCity = styled.main`
         backdrop-filter: blur(1rem) saturate(1.1);
         right: 0;
         min-height: 100 vh;
-
-        .blurred-bg {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            height: 100%;
-            width: 100%;
-            filter: blur(4px);
-            z-index: 1;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: bottom;
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url("https://media.istockphoto.com/photos/transparent-umbrella-under-rain-against-water-drops-splash-background-picture-id1257951336?b=1&k=20&m=1257951336&s=170667a&w=0&h=N_dkdVEznSiN43vNpVzjnnk8xUi4lg1IFK19JXxo5Zg=");
-        }
 
         &__content {
             position: relative;
@@ -85,9 +76,10 @@ export const StyledSingleCity = styled.main`
             margin-bottom: 2.4rem;
             resize: none;
 
-            // background-color: transparent;
-            // color: #fff;
-            // border-color: rgb(180 180 180 / 40%);
+            background-color: transparent;
+            color: #fff;
+            border-color: rgb(180 180 180 / 40%);
+            padding: 2rem;
         }
     }
 `;

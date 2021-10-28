@@ -6,34 +6,41 @@ import { IWeatherInfo } from "./IWeatherInfo";
 import { IWeatherData } from "../../interfaces";
 
 const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
-    const { current, location: _location } = weatherData as IWeatherData;
-    const { name, region, country, timezone_id: timezone } = _location;
-    const {
-        observation_time: time,
-        temperature,
-        weather_icons,
-        weather_descriptions,
-        pressure,
-        wind_degree,
-        wind_dir,
-        wind_speed
-    } = current;
+    // const { current, location: _location } = weatherData as IWeatherData;
+    // const { name, region, country, timezone_id: timezone } = _location;
+    // const {
+    //     observation_time: time,
+    //     temperature,
+    //     weather_icons,
+    //     weather_descriptions,
+    //     pressure,
+    //     wind_degree,
+    //     wind_dir,
+    //     wind_speed
+    // } = current;
+
+    const { weather, main, wind, name } = weatherData as IWeatherData;
+
+    const { temp: temperature, pressure, humidity } = main;
+    const { description } = weather[0];
+
+    const { speed: wind_speed, deg: wind_degree } = wind;
 
     return (
         <StyledWeatherInfo>
             <div className="top-section">
                 <div>
                     <h1 className="temp">{temperature}&deg; C</h1>
-                    <h1>{weather_descriptions[0]}</h1>
+                    <h1>{description}</h1>
                 </div>
 
                 <div className="top-section__place">
                     <h2 className="city">{name}</h2>
-                    <h3 className="country">{country}</h3>
+                    {/* <h3 className="country">{country}</h3> */}
 
-                    <p className="time">
+                    {/* <p className="time">
                         {time} {timezone}
-                    </p>
+                    </p> */}
                 </div>
             </div>
 
@@ -52,10 +59,10 @@ const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
                     <h3>Wind Degree</h3>
                     <h3>{wind_degree}</h3>
                 </div>
-                <div className="col">
+                {/* <div className="col">
                     <h3>Wind Direction</h3>
                     <h3>{wind_dir}</h3>
-                </div>
+                </div> */}
                 <div className="col">
                     <h3>Wind Speed</h3>
                     <h3>{wind_speed}</h3>

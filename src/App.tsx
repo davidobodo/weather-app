@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //Styles
 import { defaultTheme } from "./styles/Themes";
@@ -73,6 +75,7 @@ const App = (): JSX.Element => {
                 </Switch>
             </div>
             <Footer />
+            <ToastContainer />
         </ThemeProvider>
     );
 };

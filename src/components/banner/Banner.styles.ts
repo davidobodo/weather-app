@@ -31,6 +31,8 @@ export const StyledBanner = styled.header`
         align-items: center;
         justify-content: center;
         padding: 2rem;
+        position: relative;
+        z-index: 2;
 
         h1 {
             margin-bottom: 2rem;

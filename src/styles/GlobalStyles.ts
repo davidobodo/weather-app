@@ -66,4 +66,8 @@ export const GlobalStyles = createGlobalStyle`
         color: #000;
     }
 
+
+    .Toastify__toast-body > div:last-child{
+        font-size: 1.4rem;
+    }
 `;

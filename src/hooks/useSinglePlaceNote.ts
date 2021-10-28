@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { showInfoToast } from "../utils";
 
 /**
  * Hanldes all Notes Logic for a single place
@@ -16,6 +17,10 @@ const useSinglePlaceNote = (onSubmitNote: (place: string, note: string) => void,
 
     const handleSubmitNote = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (note.trim().length === 0) {
+            showInfoToast("Please enter some notes.");
+            return;
+        }
         onSubmitNote(place, note);
     };
 

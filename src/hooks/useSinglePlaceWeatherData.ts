@@ -53,8 +53,8 @@ const useSinglePlaceWeatherData = (
     //-------------------------------------------------------
     //Current displayed weather
     //-------------------------------------------------------
-    // const [currentDisplayedWeather, setCurrentDisplayedWeather] = useState<IWeatherData | null>(DUMMY_DATA);
-    const [currentDisplayedWeather, setCurrentDisplayedWeather] = useState(DUMMY_DATA);
+    const [currentDisplayedWeather, setCurrentDisplayedWeather] = useState<IWeatherData | null>();
+    // const [currentDisplayedWeather, setCurrentDisplayedWeather] = useState(DUMMY_DATA);
     const [gettingWeatherReport, setGettingWeatherReport] = useState(true);
     const [noWeatherData, setNoWeatherData] = useState(false);
 
@@ -64,55 +64,55 @@ const useSinglePlaceWeatherData = (
         }, 3000);
     }, []);
 
-    // const requestPlaceWeather = async (place: string) => {
-    //     try {
-    //         const res: any = await getPlaceWeather(place);
+    const requestPlaceWeather = async (place: string) => {
+        try {
+            const res: any = await getPlaceWeather(place);
 
-    //         if (res.success === false) {
-    //             setNoWeatherData(true);
-    //             // setCurrentDisplayedWeather(null);
-    //         } else {
-    //             setCurrentDisplayedWeather(res);
-    //         }
+            if (res.cod === "404") {
+                setNoWeatherData(true);
+                setCurrentDisplayedWeather(null);
+            } else {
+                setCurrentDisplayedWeather(res);
+            }
 
-    //         //TODO: Clear search input
-    //     } catch (err) {
-    //         console.log(err, "THE ERROR");
-    //     } finally {
-    //         setGettingWeatherReport(false);
-    //     }
-    // };
+            //TODO: Clear search input
+        } catch (err) {
+            console.log(err, "THE ERROR");
+        } finally {
+            setGettingWeatherReport(false);
+        }
+    };
 
-    // useEffect(() => {
-    //     if (place.length > 0) {
-    //         //Check for notes
-    //         if (storage?.notes && storage.notes[place]) {
-    //             setNote(storage.notes[place]);
-    //         } else {
-    //             setNote("");
-    //         }
+    useEffect(() => {
+        if (place.length > 0) {
+            //Check for notes
+            if (storage?.notes && storage.notes[place]) {
+                setNote(storage.notes[place]);
+            } else {
+                setNote("");
+            }
 
-    //         //Check for Favourites
-    //         if (storage?.favourites) {
-    //             const isPresent = storage?.favourites.find(
-    //                 (item: string) => item.toLowerCase() === place.toLowerCase()
-    //             );
+            //Check for Favourites
+            if (storage?.favourites) {
+                const isPresent = storage?.favourites.find(
+                    (item: string) => item.toLowerCase() === place.toLowerCase()
+                );
 
-    //             if (isPresent) {
-    //                 setIsAmongFavourites(true);
-    //             } else {
-    //                 setIsAmongFavourites(false);
-    //             }
-    //         }
+                if (isPresent) {
+                    setIsAmongFavourites(true);
+                } else {
+                    setIsAmongFavourites(false);
+                }
+            }
 
-    //         setNoWeatherData(false);
-    //         // setCurrentDisplayedWeather(null);
-    //         requestPlaceWeather(place);
-    //     } else {
-    //         //If user visits this url without any place query
-    //         history.push("/");
-    //     }
-    // }, [place, history]);
+            setNoWeatherData(false);
+            setCurrentDisplayedWeather(null);
+            requestPlaceWeather(place);
+        } else {
+            //If user visits this url without any place query
+            history.push("/");
+        }
+    }, [place, history]);
 
     return {
         gettingWeatherReport,

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { getLocalStorage, setLocalStorage } from "../utils";
+import { getLocalStorage, setLocalStorage, showSuccessToast } from "../utils";
 
 import { ILocalStorage } from "../interfaces";
 import { LOCAL_STORAGE_KEY, MOST_POPULOUS_CITIES } from "../constants";
@@ -20,6 +20,7 @@ const useAppStorage = () => {
             }
         };
         setLocalStorage(LOCAL_STORAGE_KEY, storage);
+        showSuccessToast("Note Updated");
     };
 
     //-------------------------------------------------------
@@ -45,6 +46,7 @@ const useAppStorage = () => {
             };
         }
         setLocalStorage(LOCAL_STORAGE_KEY, storage);
+        showSuccessToast("Favourites Updated");
     };
 
     //-------------------------------------------------------

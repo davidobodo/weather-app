@@ -5,14 +5,14 @@ import Button from "../../components/button/Button";
 import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 import SearchBar from "../../components/search/Search";
 //Styles
-import { StyledSingleCity } from "./SinglePlace.styles";
+import { StyledSinglePlace } from "./SinglePlace.styles";
 
 //Interfaces
 import { ISinglePlace } from "./ISinglePlace";
 import { IWeatherData } from "../../interfaces";
 import { ILocalStorage } from "../../interfaces";
 
-import { getLocalStorage } from "../../utils";
+import { getLocalStorage, getWeatherImg } from "../../utils";
 import { LOCAL_STORAGE_KEY } from "../../constants";
 
 import useSinglePlaceNote from "../../hooks/useSinglePlaceNote";
@@ -50,7 +50,9 @@ const SingleCity: React.FC<ISinglePlace> = ({
     );
 
     return (
-        <StyledSingleCity>
+        <StyledSinglePlace
+            bgImg={getWeatherImg(currentDisplayedWeather ? currentDisplayedWeather.weather[0].description : "")}
+        >
             {gettingWeatherReport && <OverlayLoader />}
             {currentDisplayedWeather && (
                 <>
@@ -125,7 +127,7 @@ const SingleCity: React.FC<ISinglePlace> = ({
             )}
 
             {noWeatherData && <h1>Sorry no data for that location</h1>}
-        </StyledSingleCity>
+        </StyledSinglePlace>
     );
 };
 
