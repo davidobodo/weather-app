@@ -7,6 +7,8 @@ export const StyledWeatherInfo = styled.section`
     background-color: transparent;
     color: #fff;
     height: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     // padding: 5rem;
     // height: 80vh;
     // background-size: cover;
@@ -50,6 +52,10 @@ export const StyledWeatherInfo = styled.section`
             display: flex;
             justify-content: space-between;
             margin-bottom: 2rem;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
         }
     }
 

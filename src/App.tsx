@@ -63,6 +63,9 @@ const App = (): JSX.Element => {
                                     history={history}
                                     onSubmitNote={onSubmitNote}
                                     onEditFavourites={onEditFavourites}
+                                    handleGetCityWeather={handleGetCityWeather}
+                                    searchValue={searchValue}
+                                    handleChangeSearchInput={handleChangeSearchInput}
                                 />
                             );
                         }}

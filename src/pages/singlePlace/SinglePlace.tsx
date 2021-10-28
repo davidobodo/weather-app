@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
 import Button from "../../components/button/Button";
 import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
-
+import SearchBar from "../../components/search/Search";
 //Styles
 import { StyledSingleCity } from "./SinglePlace.styles";
 
@@ -18,7 +19,17 @@ import useSinglePlaceNote from "../../hooks/useSinglePlaceNote";
 import useSinglePlaceFavourite from "../../hooks/useSinglePlaceFavourite";
 import useSinglePlaceWeatherData from "../../hooks/useSinglePlaceWeatherData";
 
-const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, onEditFavourites }): JSX.Element => {
+import AppLogo from "../../assets/icons/AppLogo.svg";
+
+const SingleCity: React.FC<ISinglePlace> = ({
+    location,
+    history,
+    onSubmitNote,
+    onEditFavourites,
+    handleChangeSearchInput,
+    handleGetCityWeather,
+    searchValue
+}): JSX.Element => {
     const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
     const place = new URLSearchParams(location.search).get("value") || "";
 
@@ -44,6 +55,17 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
             {currentDisplayedWeather && (
                 <>
                     <div className="single-city__left-column">
+                        <header className="single-city__left-column__header">
+                            <Link to="/">
+                                <img src={AppLogo} alt="" />
+                            </Link>
+
+                            <SearchBar
+                                handleGetCityWeather={handleGetCityWeather}
+                                searchValue={searchValue}
+                                handleChangeSearchInput={handleChangeSearchInput}
+                            />
+                        </header>
                         <WeatherInfo
                             // name={name}
                             // region={region}
@@ -60,7 +82,7 @@ const SingleCity: React.FC<ISinglePlace> = ({ location, history, onSubmitNote, o
                         />
                     </div>
                     <div className="single-city__right-column">
-                        <div className="blurred-bg"></div>
+                        {/* <div className="blurred-bg"></div> */}
                         <div className="single-city__right-column__content">
                             <div className="btn-favourite">
                                 <Button

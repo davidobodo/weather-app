@@ -70,7 +70,7 @@ const useSinglePlaceWeatherData = (
 
     //         if (res.success === false) {
     //             setNoWeatherData(true);
-    //             setCurrentDisplayedWeather(null);
+    //             // setCurrentDisplayedWeather(null);
     //         } else {
     //             setCurrentDisplayedWeather(res);
     //         }
@@ -106,7 +106,7 @@ const useSinglePlaceWeatherData = (
     //         }
 
     //         setNoWeatherData(false);
-    //         setCurrentDisplayedWeather(null);
+    //         // setCurrentDisplayedWeather(null);
     //         requestPlaceWeather(place);
     //     } else {
     //         //If user visits this url without any place query

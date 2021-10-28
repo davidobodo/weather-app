@@ -1,3 +1,10 @@
+import imgThunderstorm from "../assets/images/thunderstorm.jpg";
+import imgSnow from "../assets/images/snow.jpg";
+import imgRain from "../assets/images/rain.jpg";
+import imgMist from "../assets/images/mist.jpg";
+import imgClouds from "../assets/images/clouds.jpg";
+import imgClearsky from "../assets/images/clearsky.jpg";
+
 /**
  *
  * @param identifier Variable to store data in local storage as

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IButton } from "./IButton";
 
 export const StyledButton = styled.button<IButton>`
-    height: 3.6rem;
+    height: 4.6rem;
     padding: 0px 3rem;
     border-radius: 3rem;
     border: 0px;

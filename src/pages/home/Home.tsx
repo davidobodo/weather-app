@@ -59,8 +59,6 @@ const Home: React.FC<IHome> = ({
         getWeatherInCities(myFavourites);
     }, []);
 
-    console.log(isNavSticky, "dsjkdj");
-
     return (
         <StyledHome>
             <div className={isNavSticky ? "nav-wrapper is-sticky" : "nav-wrapper"}>
