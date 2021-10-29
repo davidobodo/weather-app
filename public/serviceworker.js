@@ -50,8 +50,6 @@ self.addEventListener("fetch", (event) => {
     //     fetch(event.request).catch(() => caches.match(event.request))
     // );
 
-    console.log("FETCHING REQUEST ============");
-
     // check if request is made by chrome extensions or web page
     // if request is made for web page url must contain http.
     if (!(event.request.url.indexOf("http") === 0)) return; // skip the request. if request is not made with http protocol
@@ -69,44 +67,69 @@ self.addEventListener("fetch", (event) => {
     //                 cache.put(event.request, resClone);
     //             });
 
-    //             console.log(res, "THE FINAL RESPONSE");
+    //             console.log(res, "THE RESPONSE");
+
     //             //Return the response
     //             return res;
     //         })
     //         .catch((err) => {
-    //             console.log(err, "THE ERRPR");
-
     //             //If we get here then user is offline. In this case, we return the response in the cache
     //             caches.match(event.request).then((res) => res);
     //         })
     // );
+    // event.respondWith(
+    //     caches.match(event.request).then(() => {
+    //         return fetch(event.request)
+    //             .then((res) => {
+    //                 //After a network request is made, make a copy of the response returned
+    //                 const resClone = res.clone();
+
+    //                 //Open the cache
+    //                 caches.open(CACHE_NAME).then((cache) => {
+    //                     //Add the response to the cache
+
+    //                     // console.log(event.request, "THE REQUEST");
+    //                     cache.put(event.request, resClone);
+    //                 });
+
+    //                 //Return the response
+    //                 return res;
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err, "THE ERR0R");
+
+    //                 //If we get here then user is offline. In this case, we return the response in the cache
+    //                 caches.match(event.request).then((res) => {
+    //                     console.log(res, "THE RESPONSE IN THE ERROR");
+
+    //                     return res;
+    //                 });
+    //             });
+    //     })
+    // );
+
     event.respondWith(
-        caches.match(event.request).then(() => {
-            return fetch(event.request)
-                .then((res) => {
-                    //After a network request is made, make a copy of the response returned
-                    const resClone = res.clone();
+        (async function () {
+            var cache = await caches.open(CACHE_NAME);
+            var cachedFiles = await cache.match(event.request);
 
-                    //Open the cache
-                    caches.open(CACHE_NAME).then((cache) => {
-                        //Add the response to the cache
-                        cache.put(event.request, resClone);
-                    });
+            // if (cachedFiles) {
+            //     return cachedFiles;
+            // } else {
+            try {
+                var response = await fetch(event.request);
 
-                    console.log(res, "THE FINAL RESPONSE");
-                    //Return the response
-                    return res;
-                })
-                .catch((err) => {
-                    console.log(err, "THE ERRPR");
-
-                    //If we get here then user is offline. In this case, we return the response in the cache
-                    caches.match(event.request).then((res) => {
-                        console.log(res, "THE RESPONSE IN THE ERROR");
-
-                        return res;
-                    });
-                });
-        })
+                if (event.request.url.includes("https://api.openweathermap.org/data/2.5/weather")) {
+                    console.log("GOING TO UPDATE THE CACHE");
+                }
+                await cache.put(event.request, response.clone());
+                return response;
+            } catch (e) {
+                /* ... */
+                console.log(e, "RETURN CACHED VALUE");
+                return cachedFiles;
+            }
+            // }
+        })()
     );
 });

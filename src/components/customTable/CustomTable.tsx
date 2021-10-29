@@ -20,7 +20,7 @@ const CustomTable: React.FC<ICustomTable> = ({ list, onRemoveItem }): JSX.Elemen
             <tbody>
                 {list.map((item: IWeatherData, i) => {
                     return (
-                        <tr>
+                        <tr key={i}>
                             <td>{i + 1}</td>
                             <td>
                                 <Link to={`/place?value=${item.name}`}>{item.name}</Link>

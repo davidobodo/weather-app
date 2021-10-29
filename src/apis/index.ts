@@ -7,7 +7,7 @@ const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
  *
  * @param searchQuery Search string indicating the city to search
  */
-export const getPlaceWeather = async (searchQuery: string) => {
+export const getPlaceWeather = async (searchQuery: string): Promise<any> => {
     try {
         // let res: any = await fetch(
         //     `${BASE_URL}/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API}&query=${searchQuery}`
@@ -24,31 +24,32 @@ export const getPlaceWeather = async (searchQuery: string) => {
 
         return res;
     } catch (err) {
-        throw err;
+        // logginservice.logerror(err);
+        // throw err;
+        return err;
     }
 };
 
 /**
- *
+ * Description of the function
  * @param cities List of cities
  * @returns Array of cities weather details
  */
-export const getWeatherInCities = async (cities: string[]): Promise<IWeatherData[]> => {
-    // export const getWeatherInCities = async (cities: string[]): Promise<any[]> => {
+// export const getWeatherInCities = async (cities: string[]): Promise<IWeatherData[]> => {
+//     const result = cities.map((city: string) => {
+//         return new Promise(async (resolve, reject) => {
+//             try {
+//                 const res = await getPlaceWeather(city);
+//                 resolve(res);
+//             } catch (err) {
+//                 reject(err);
+//             }
+//         });
+//     });
+//     const allResults: IWeatherData[] = (await Promise.all(result).catch((err) =>
+//         console.log(err, "ERROR WHEN RETRIEVING CITIES")
+//     )) as IWeatherData[];
+//     return allResults;
+// };
 
-    const result = cities.map((city: string) => {
-        console.log(city, "THE CITY ");
-        return new Promise(async (resolve, reject) => {
-            try {
-                const res = await getPlaceWeather(city);
-                resolve(res);
-            } catch (err) {
-                reject(err);
-            }
-        });
-    });
-    const allResults: IWeatherData[] = (await Promise.all(result).catch((err) =>
-        console.log(err, "ERROR WHEN RETRIEVING CITIES")
-    )) as IWeatherData[];
-    return allResults;
-};
+export const getWeatherInCities = (cities: string[]) => Promise.all(cities.map(getPlaceWeather));
