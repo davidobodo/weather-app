@@ -30,7 +30,7 @@ const Banner: React.FC<IBanner> = ({ handleGetCityWeather, searchValue, handleCh
                 {WEATHER_IMAGES.map((item, i) => {
                     return (
                         <div key={i} className="banner__image">
-                            <img src={item} />
+                            <img src={item} alt="" />
                         </div>
                     );
                 })}

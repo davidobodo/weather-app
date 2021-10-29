@@ -27,7 +27,7 @@ const CustomTable: React.FC<ICustomTable> = ({ list, onRemoveItem }): JSX.Elemen
                             </td>
                             <td>{(item.main.temp - 273).toFixed(1)}</td>
                             <td>
-                                <button type="button" onClick={() => onRemoveItem(item.name)}>
+                                <button type="button" onClick={() => onRemoveItem(item.name)} aria-label="Remove row">
                                     <CancelIcon />
                                 </button>
                             </td>
