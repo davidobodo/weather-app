@@ -26,7 +26,9 @@ const useHomeLists = (storage: ILocalStorage) => {
         const fetchTop15Data = async () => {
             try {
                 const res = await getWeatherInCities(top15);
-                setTop15Weather(res);
+
+                console.log(res, "the response");
+                setTop15Weather(res || []);
             } catch (err) {
                 console.log(err);
                 showErrorToast("Oops couldnt fetch temperature for cities");
@@ -36,7 +38,9 @@ const useHomeLists = (storage: ILocalStorage) => {
         const fetchMyFavouritesData = async () => {
             try {
                 const res = await getWeatherInCities(myFavourites);
-                setMyFavouritesWeather(res);
+
+                console.log(res, "the response second");
+                setMyFavouritesWeather(res || []);
             } catch (err) {
                 console.log(err);
                 showErrorToast("Oops couldnt fetch temperature for cities");

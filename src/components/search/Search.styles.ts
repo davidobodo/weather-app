@@ -42,28 +42,35 @@ export const StyledSearch = styled.form<ISearchStyles>`
     ${({ isInteractive }) =>
         isInteractive &&
         `
-        
-        input{
-            width: 0px;
-            margin-left: 0px;
-            padding: 0px;
-            transition: width 200ms ease-in-out;
+        clip-path: circle(10% at 92% 51%);
+        transition: clip-path 200ms ease-in-out;
+
+        // input{
+        //     width: 0px;
+        //     margin-left: 0px;
+        //     padding: 0px;
+        //     transition: width 200ms ease-in-out;
 
 
-            &:focus{
-                width: 25.3rem;
-                margin-left: 2rem;
-                padding: 0px 1.5rem;
-            }
-        }
+        //     &:focus{
+        //         width: 25.3rem;
+        //         margin-left: 2rem;
+        //         padding: 0px 1.5rem;
+        //     }
+        // }
+
+        // &:hover, &:focus{
+
+        //     input{
+        //         width: 25.3rem;
+        //         margin-left: 2rem;
+        //         padding: 0px 1.5rem;
+        //     }
+        // }
 
         &:hover, &:focus{
-
-            input{
-                width: 25.3rem;
-                margin-left: 2rem;
-                padding: 0px 1.5rem;
-            }
+            // clip-path: none;
+            clip-path: inset(0 0 0 0);
         }
     
     `}

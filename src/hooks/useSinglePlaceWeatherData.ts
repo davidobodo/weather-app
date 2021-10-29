@@ -59,13 +59,14 @@ const useSinglePlaceWeatherData = (
     const [gettingWeatherReport, setGettingWeatherReport] = useState(true);
     const [noWeatherData, setNoWeatherData] = useState(false);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setGettingWeatherReport(false);
-        }, 3000);
-    }, []);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setGettingWeatherReport(false);
+    //     }, 3000);
+    // }, []);
 
     const requestPlaceWeather = async (place: string) => {
+        setGettingWeatherReport(true);
         try {
             const res: any = await getPlaceWeather(place);
 

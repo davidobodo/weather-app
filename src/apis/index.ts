@@ -35,7 +35,9 @@ export const getPlaceWeather = async (searchQuery: string) => {
  */
 export const getWeatherInCities = async (cities: string[]): Promise<IWeatherData[]> => {
     // export const getWeatherInCities = async (cities: string[]): Promise<any[]> => {
+
     const result = cities.map((city: string) => {
+        console.log(city, "THE CITY ");
         return new Promise(async (resolve, reject) => {
             try {
                 const res = await getPlaceWeather(city);
@@ -45,6 +47,8 @@ export const getWeatherInCities = async (cities: string[]): Promise<IWeatherData
             }
         });
     });
-    const allResults: IWeatherData[] = (await Promise.all(result)) as IWeatherData[];
+    const allResults: IWeatherData[] = (await Promise.all(result).catch((err) =>
+        console.log(err, "ERROR WHEN RETRIEVING CITIES")
+    )) as IWeatherData[];
     return allResults;
 };

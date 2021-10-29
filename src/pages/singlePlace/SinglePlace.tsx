@@ -68,9 +68,7 @@ const SingleCity: React.FC<ISinglePlace> = ({
                     />
                 </header>
                 {currentDisplayedWeather && <WeatherInfo weatherData={currentDisplayedWeather} />}
-                {!currentDisplayedWeather && !gettingWeatherReport && (
-                    <h1 className="empty-note">Oops no data for "{place}"</h1>
-                )}
+                {noWeatherData && <h1 className="empty-note">Oops no data for "{place}"</h1>}
             </div>
             <div className="single-place__right-column">
                 {currentDisplayedWeather && (
