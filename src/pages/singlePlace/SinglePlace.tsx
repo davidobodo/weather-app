@@ -54,12 +54,10 @@ const SingleCity: React.FC<ISinglePlace> = ({
             bgImg={getWeatherImg(currentDisplayedWeather ? currentDisplayedWeather.weather[0].description : "")}
         >
             {gettingWeatherReport && <OverlayLoader />}
+
             <div className="single-place__left-column">
                 <header className="single-place__left-column__header">
-                    <Link to="/">
-                        {/* <img src={AppLogo} alt="" /> */}
-                        Home
-                    </Link>
+                    <Link to="/">Home</Link>
                     <SearchBar
                         handleGetCityWeather={handleGetCityWeather}
                         searchValue={searchValue}

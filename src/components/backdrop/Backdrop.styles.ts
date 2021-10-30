@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledBackdrop = styled.div`
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: ${({ color }) => color};
     left: 0px;
     top: 0px;
     width: 100%;
