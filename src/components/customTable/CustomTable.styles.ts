@@ -143,9 +143,9 @@ export const StyledCustomTable = styled.table`
         }
 
         td:before {
-            // /* Now like a table header */
+            // Now like a table header
             position: absolute;
-            // /* Top/left values mimic padding */
+            // Top/left values mimic padding
             top: 1.2rem;
             left: 1.2rem;
             width: 45%;

@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-
 import { getLocalStorage, setLocalStorage, showSuccessToast } from "../utils";
-
 import { ILocalStorage } from "../interfaces";
 import { LOCAL_STORAGE_KEY, MOST_POPULOUS_CITIES } from "../constants";
 

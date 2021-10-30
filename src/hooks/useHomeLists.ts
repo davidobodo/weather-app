@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-
-import { MOST_POPULOUS_CITIES } from "../constants";
 import { getWeatherInCities } from "../apis";
-import { ILocalStorage, IWeatherData, IHomePageTableRow } from "../interfaces";
+import { ILocalStorage, IHomePageTableRow } from "../interfaces";
 import { showErrorToast, extractNameAndTemp } from "../utils";
 
 const useHomeLists = (

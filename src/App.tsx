@@ -29,43 +29,40 @@ const App = (): JSX.Element => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalStyles />
-
-            <div>
-                <Switch>
-                    <Route
-                        exact
-                        path="/"
-                        render={() => {
-                            return (
-                                <Home
-                                    handleGetCityWeather={handleGetCityWeather}
-                                    searchValue={searchValue}
-                                    handleChangeSearchInput={handleChangeSearchInput}
-                                    onEditFavourites={onEditFavourites}
-                                    onRemovePopularCity={onRemovePopularCity}
-                                />
-                            );
-                        }}
-                    />
-                    <Route
-                        exact
-                        path="/place"
-                        render={({ location, history }) => {
-                            return (
-                                <SinglePlace
-                                    location={location}
-                                    history={history}
-                                    onSubmitNote={onSubmitNote}
-                                    onEditFavourites={onEditFavourites}
-                                    handleGetCityWeather={handleGetCityWeather}
-                                    searchValue={searchValue}
-                                    handleChangeSearchInput={handleChangeSearchInput}
-                                />
-                            );
-                        }}
-                    />
-                </Switch>
-            </div>
+            <Switch>
+                <Route
+                    exact
+                    path="/"
+                    render={() => {
+                        return (
+                            <Home
+                                handleGetCityWeather={handleGetCityWeather}
+                                searchValue={searchValue}
+                                handleChangeSearchInput={handleChangeSearchInput}
+                                onEditFavourites={onEditFavourites}
+                                onRemovePopularCity={onRemovePopularCity}
+                            />
+                        );
+                    }}
+                />
+                <Route
+                    exact
+                    path="/place"
+                    render={({ location, history }) => {
+                        return (
+                            <SinglePlace
+                                location={location}
+                                history={history}
+                                onSubmitNote={onSubmitNote}
+                                onEditFavourites={onEditFavourites}
+                                handleGetCityWeather={handleGetCityWeather}
+                                searchValue={searchValue}
+                                handleChangeSearchInput={handleChangeSearchInput}
+                            />
+                        );
+                    }}
+                />
+            </Switch>
             <Footer />
             <ToastContainer />
         </ThemeProvider>

@@ -11,8 +11,7 @@ import { StyledHome } from "./Home.styles";
 import { ILocalStorage } from "../../interfaces";
 
 import { getLocalStorage } from "../../utils";
-import { LOCAL_STORAGE_KEY, MOST_POPULOUS_CITIES } from "../../constants";
-import { getPlaceWeather } from "../../apis";
+import { LOCAL_STORAGE_KEY } from "../../constants";
 import useStickyNav from "../../hooks/useStickyNav";
 import useHomeLists from "../../hooks/useHomeLists";
 
@@ -46,7 +45,6 @@ const Home: React.FC<IHome> = ({
                     handleChangeSearchInput={handleChangeSearchInput}
                 />
             </div>
-
             <Banner
                 handleGetCityWeather={handleGetCityWeather}
                 searchValue={searchValue}

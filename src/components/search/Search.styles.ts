@@ -23,23 +23,6 @@ export const StyledSearch = styled.form`
         outline: none;
     }
 
-    button {
-        background-color: ${({ theme }) => theme.colors.red};
-        border: 0px;
-        border-radius: 50%;
-        padding: 0.8rem;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        margin-right: 0.8rem;
-        margin-left: 0.8rem;
-
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-    }
-
     i {
         background-color: ${({ theme }) => theme.colors.red};
         border: 0px;

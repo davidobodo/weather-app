@@ -9,7 +9,6 @@ import { StyledSinglePlace } from "./SinglePlace.styles";
 
 //Interfaces
 import { ISinglePlace } from "./ISinglePlace";
-import { IWeatherData } from "../../interfaces";
 import { ILocalStorage } from "../../interfaces";
 
 import { getLocalStorage, getWeatherImg } from "../../utils";
@@ -19,11 +18,8 @@ import useSinglePlaceNote from "../../hooks/useSinglePlaceNote";
 import useSinglePlaceFavourite from "../../hooks/useSinglePlaceFavourite";
 import useSinglePlaceWeatherData from "../../hooks/useSinglePlaceWeatherData";
 
-import AppLogo from "../../assets/icons/AppLogo.svg";
-
 const SingleCity: React.FC<ISinglePlace> = ({
     location,
-    history,
     onSubmitNote,
     onEditFavourites,
     handleChangeSearchInput,
@@ -54,7 +50,6 @@ const SingleCity: React.FC<ISinglePlace> = ({
             ? currentDisplayedWeather.weather[0].description
             : "";
 
-    // console.log(currentDisplayedWeather, "THE CURRENT DISPLAYED WEATHER");
     return (
         <StyledSinglePlace bgImg={getWeatherImg(bgImg)}>
             {gettingWeatherReport && <OverlayLoader />}

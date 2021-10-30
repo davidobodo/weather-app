@@ -1,12 +1,9 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-
 import SearchBar from "../search/Search";
-
+import { Carousel } from "react-responsive-carousel";
 import { StyledBanner } from "./Banner.styles";
 import { IBanner } from "./IBanner";
-
 import { WEATHER_IMAGES } from "../../constants";
 
 const Banner: React.FC<IBanner> = ({ handleGetCityWeather, searchValue, handleChangeSearchInput }): JSX.Element => {

@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import CancelIcon from "../../assets/icons/CancelIcon";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 
 import { ICustomTable } from "./ICustomTable";
 import { StyledCustomTable } from "./CustomTable.styles";
-import { IWeatherData, IHomePageTableRow } from "../../interfaces";
+import { IHomePageTableRow } from "../../interfaces";
+
 const CustomTable: React.FC<ICustomTable> = ({ list, onRemoveItem }): JSX.Element => {
     return (
         <StyledCustomTable>

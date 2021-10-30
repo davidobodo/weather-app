@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { getUserslocation } from "../apis";
 
 const useDetectUserLocation = () => {
     const history = useHistory();
@@ -8,10 +9,7 @@ const useDetectUserLocation = () => {
         const { latitude, longitude } = position.coords;
 
         try {
-            let res: any = await fetch(
-                `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_OPENCAGE_API_KEY}`
-            );
-            res = await res.json();
+            const res = await getUserslocation(latitude, longitude);
 
             const usersCity = res.results[0].components.state;
             history.push(`/place?value=${usersCity}`);
@@ -21,18 +19,13 @@ const useDetectUserLocation = () => {
         }
     }
 
-    const handleUserDecline = (error: any) => {
-        console.log(error);
-        alert("Permission not granted");
-    };
+    const handleUserDecline = (error: any) => {};
 
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(handelUserAccept, handleUserDecline);
         }
     }, []);
-
-    return {};
 };
 
 export default useDetectUserLocation;
