@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-import { ISearchStyles } from "../../interfaces";
-
-export const StyledSearch = styled.form<ISearchStyles>`
+export const StyledSearch = styled.form`
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -10,8 +8,6 @@ export const StyledSearch = styled.form<ISearchStyles>`
     border-radius: 3rem;
     border: 1px solid ${({ theme }) => theme.colors.ash};
     box-shadow: 0px 2px 4px rgb(0 0 0 / 18%);
-    // width: 30rem;
-    // padding: 0px 0.8rem 0px 2rem;
 
     input {
         border: 0px;
@@ -38,40 +34,4 @@ export const StyledSearch = styled.form<ISearchStyles>`
             height: 1.5rem;
         }
     }
-
-    ${({ isInteractive }) =>
-        isInteractive &&
-        `
-        clip-path: circle(10% at 92% 51%);
-        transition: clip-path 200ms ease-in-out;
-
-        // input{
-        //     width: 0px;
-        //     margin-left: 0px;
-        //     padding: 0px;
-        //     transition: width 200ms ease-in-out;
-
-
-        //     &:focus{
-        //         width: 25.3rem;
-        //         margin-left: 2rem;
-        //         padding: 0px 1.5rem;
-        //     }
-        // }
-
-        // &:hover, &:focus{
-
-        //     input{
-        //         width: 25.3rem;
-        //         margin-left: 2rem;
-        //         padding: 0px 1.5rem;
-        //     }
-        // }
-
-        &:hover, &:focus{
-            // clip-path: none;
-            clip-path: inset(0 0 0 0);
-        }
-    
-    `}
 `;

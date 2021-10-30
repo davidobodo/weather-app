@@ -35,6 +35,10 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
             img {
                 width: 16rem;
             }
+
+            input {
+                width: 17.3rem;
+            }
         }
 
         .empty-note {

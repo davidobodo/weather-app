@@ -62,7 +62,6 @@ const SingleCity: React.FC<ISinglePlace> = ({
                         handleGetCityWeather={handleGetCityWeather}
                         searchValue={searchValue}
                         handleChangeSearchInput={handleChangeSearchInput}
-                        isInteractive={true}
                     />
                 </header>
                 {currentDisplayedWeather && <WeatherInfo weatherData={currentDisplayedWeather} />}

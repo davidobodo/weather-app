@@ -7,14 +7,10 @@ import { Location, History } from "history";
 export interface ILocation extends Location {}
 export interface IHistory extends History {}
 
-export interface ISearch extends ISearchStyles {
+export interface ISearch {
     handleGetCityWeather: (e: React.FormEvent<HTMLFormElement>) => void;
     searchValue: string;
     handleChangeSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export interface ISearchStyles {
-    isInteractive?: boolean;
 }
 
 export interface ILocalStorage {
