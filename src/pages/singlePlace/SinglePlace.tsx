@@ -49,10 +49,14 @@ const SingleCity: React.FC<ISinglePlace> = ({
         setIsAmongFavourites
     );
 
+    const bgImg =
+        currentDisplayedWeather?.weather && currentDisplayedWeather?.weather[0]
+            ? currentDisplayedWeather.weather[0].description
+            : "";
+
+    // console.log(currentDisplayedWeather, "THE CURRENT DISPLAYED WEATHER");
     return (
-        <StyledSinglePlace
-            bgImg={getWeatherImg(currentDisplayedWeather ? currentDisplayedWeather.weather[0].description : "")}
-        >
+        <StyledSinglePlace bgImg={getWeatherImg(bgImg)}>
             {gettingWeatherReport && <OverlayLoader />}
 
             <div className="single-place__left-column">

@@ -67,6 +67,14 @@ export const StyledCustomTable = styled.table`
                 &:nth-child(2) {
                     text-transform: capitalize;
                     text-decoration: underline;
+
+                    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+                        text-decortation: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
                 }
 
                 &:nth-child(3) {

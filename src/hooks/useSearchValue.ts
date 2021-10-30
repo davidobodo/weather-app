@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import { showErrorToast } from "../utils";
 
 const useSearchValue = () => {
     const history = useHistory();
@@ -10,8 +11,13 @@ const useSearchValue = () => {
 
     const handleGetCityWeather = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (searchValue.trim().length === 0) return;
+
+        if (!window.navigator.onLine) {
+            showErrorToast("Please Go online to make new searches");
+            return;
+        }
         setSearchValue("");
+        if (searchValue.trim().length === 0) return;
         history.push(`/place?value=${searchValue}`);
     };
 

@@ -1,7 +1,4 @@
 // const BASE_URL = "http://api.weatherstack.com";
-
-import { IWeatherData } from "../interfaces";
-
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 /**
  *

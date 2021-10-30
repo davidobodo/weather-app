@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +13,6 @@ import Home from "./pages/home/Home";
 import SinglePlace from "./pages/singlePlace/SinglePlace";
 
 //Components
-import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 
 import useSearchValue from "./hooks/useSearchValue";
@@ -26,18 +25,10 @@ const App = (): JSX.Element => {
     const { onSubmitNote, onEditFavourites, onRemovePopularCity } = useAppStorage();
     // useDetectUserLocation();
     useScrollToTop();
-    const location = useLocation();
 
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalStyles />
-            {/* {location.pathname.includes("place") && (
-                <Navbar
-                    handleGetCityWeather={handleGetCityWeather}
-                    searchValue={searchValue}
-                    handleChangeSearchInput={handleChangeSearchInput}
-                />
-            )} */}
 
             <div>
                 <Switch>
