@@ -10,7 +10,7 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
     background-image: ${({ bgImg }) =>
         `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${bgImg});`};
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
         display: flex;
     }
 

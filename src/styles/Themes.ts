@@ -7,6 +7,7 @@ export const defaultTheme = {
         maxWidth: "1024px"
     },
     breakpoints: {
-        tablet: "768px"
+        tablet: "768px",
+        miniLaptop: "992px"
     }
 };

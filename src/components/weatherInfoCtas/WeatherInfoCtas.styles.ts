@@ -6,7 +6,7 @@ export const StyledWeatherInfoCtas = styled.div`
     padding: 6rem 3rem;
     flex-shrink: 0;
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
         backdrop-filter: blur(1.5rem) saturate(1.1);
         width: 40rem;
         min-height: 100vh;
@@ -20,7 +20,7 @@ export const StyledWeatherInfoCtas = styled.div`
         padding: 2rem;
         backdrop-filter: blur(1.5rem) saturate(1.1);
 
-        @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
             margin-bottom: 2.4rem;
             position: static;
             padding: 0px;

@@ -22,7 +22,7 @@ export const StyledWeatherInfo = styled.section`
     }
 
     .top-section {
-        @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
@@ -36,13 +36,13 @@ export const StyledWeatherInfo = styled.section`
                 font-size: 4.4rem;
 
                 @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-                    font-size: 10.6rem;
+                    font-size: 7.6rem;
                 }
             }
         }
 
         &__place {
-            @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+            @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
