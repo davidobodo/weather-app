@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getWeatherInCities } from "../apis";
 import { ILocalStorage, IHomePageTableRow } from "../interfaces";
 import { showErrorToast, extractNameAndTemp } from "../utils";
+import { MOST_POPULOUS_CITIES } from "../constants";
 
 const useHomeLists = (
     storage: ILocalStorage,
@@ -39,7 +40,7 @@ const useHomeLists = (
     //-------------------------------------------------------
     //MOST POPULOUS TABLE LOGIC
     //-------------------------------------------------------
-    const mostPopulousCities = storage?.mostPopulousCities?.sort() || [];
+    const mostPopulousCities = storage?.mostPopulousCities?.sort() || MOST_POPULOUS_CITIES.sort();
     const [isLoadingMPCWeather, setIsLoadingMPCWeather] = useState(true);
     const [mostPopulousCitiesWeather, setMostPopulousCitiesWeather] = useState<IHomePageTableRow[]>([]);
     const handleOnEditMPC = (place: string) => {
@@ -49,6 +50,7 @@ const useHomeLists = (
         setMostPopulousCitiesWeather(newList);
         onRemovePopularCity(place);
     };
+
     useEffect(() => {
         if (mostPopulousCities.length > 0) {
             (async function () {

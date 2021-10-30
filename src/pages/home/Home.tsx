@@ -26,7 +26,6 @@ const Home: React.FC<IHome> = ({
 }): JSX.Element => {
     const { isNavSticky } = useStickyNav();
     const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
-
     const { isDetectingLocation, usersLocation, usersLocationTemp } = useDetectUserLocation(storage);
     const {
         handleOnEditMPC,
@@ -56,7 +55,6 @@ const Home: React.FC<IHome> = ({
                 usersLocation={usersLocation}
                 usersLocationTemp={usersLocationTemp}
             />
-
             <div className="content">
                 {isLoadingFavouritesWeather ? (
                     <TableLoadingShimmer amount={myFavourites.length} />

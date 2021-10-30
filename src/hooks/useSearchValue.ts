@@ -13,7 +13,7 @@ const useSearchValue = () => {
         e.preventDefault();
 
         if (!window.navigator.onLine) {
-            showErrorToast("Please Go online to make new searches");
+            showErrorToast("Please go online to make new searches");
             return;
         }
         setSearchValue("");

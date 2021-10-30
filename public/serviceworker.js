@@ -1,5 +1,7 @@
 const CACHE_NAME = "DSC_WEATHER_APP";
 
+const self = this;
+
 //Install Service Worker (SW)
 self.addEventListener("install", (event) => {
     //Since we want to cache the entire site, no need to perform any action here
@@ -30,14 +32,9 @@ self.addEventListener("fetch", (event) => {
             const cachedFiles = await cache.match(event.request);
             try {
                 const response = await fetch(event.request);
-
-                // if (event.request.url.includes("https://api.openweathermap.org/data/2.5/weather")) {
-                //     console.log("GOING TO UPDATE THE CACHE");
-                // }
                 await cache.put(event.request, response.clone());
                 return response;
             } catch (e) {
-                // console.log(e, "RETURN CACHED VALUE");
                 return cachedFiles;
             }
         })()

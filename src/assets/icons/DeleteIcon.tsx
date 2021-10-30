@@ -8,11 +8,11 @@ const DeleteIcon = (): JSX.Element => {
             width="22"
             height="22"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="#9e9e9e"
             fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
         >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <line x1="4" y1="7" x2="20" y2="7" />

@@ -73,7 +73,8 @@ const useAppStorage = () => {
             storage = {
                 notes: {},
                 favourites: [],
-                mostPopulousCities: MOST_POPULOUS_CITIES.sort()
+                mostPopulousCities: MOST_POPULOUS_CITIES.sort(),
+                usersLocation: ""
             };
             setLocalStorage(LOCAL_STORAGE_KEY, storage);
         }
