@@ -7,9 +7,9 @@ const Search: React.FC<ISearch> = ({ handleGetCityWeather, searchValue, handleCh
     return (
         <StyledSearch onSubmit={handleGetCityWeather} className="search-form">
             <input type="text" placeholder="Enter a city..." value={searchValue} onChange={handleChangeSearchInput} />
-            <button type="submit" aria-label="Search">
+            <i>
                 <SearchIcon />
-            </button>
+            </i>
         </StyledSearch>
     );
 };

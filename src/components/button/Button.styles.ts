@@ -18,4 +18,9 @@ export const StyledButton = styled.button<IButton>`
         color: ${({ theme }) => theme.colors.red};
         background-color: #fff;
     }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 4px 2px #fff;
+    }
 `;

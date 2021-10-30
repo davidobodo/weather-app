@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import CancelIcon from "../../assets/icons/CancelIcon";
+import DeleteIcon from "../../assets/icons/DeleteIcon";
 
 import { ICustomTable } from "./ICustomTable";
 import { StyledCustomTable } from "./CustomTable.styles";
@@ -28,7 +29,7 @@ const CustomTable: React.FC<ICustomTable> = ({ list, onRemoveItem }): JSX.Elemen
                             <td>{(item.temperature - 273).toFixed(1)}</td>
                             <td>
                                 <button type="button" onClick={() => onRemoveItem(item.name)} aria-label="Remove row">
-                                    <CancelIcon />
+                                    <DeleteIcon />
                                 </button>
                             </td>
                         </tr>

@@ -65,14 +65,19 @@ export const StyledCustomTable = styled.table`
                 }
 
                 &:nth-child(2) {
-                    text-transform: capitalize;
-                    text-decoration: underline;
+                    a {
+                        text-transform: capitalize;
+                        text-decoration: underline;
 
-                    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-                        text-decortation: none;
-
+                        &:focus,
                         &:hover {
+                            outline: none;
+                            color: ${({ theme }) => theme.colors.red};
                             text-decoration: underline;
+                        }
+
+                        @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+                            text-decoration: none;
                         }
                     }
                 }
@@ -86,6 +91,18 @@ export const StyledCustomTable = styled.table`
                 button {
                     border: 0px;
                     background-color: transparent;
+                    cursor: pointer;
+
+                    &:focus,
+                    &:hover {
+                        outline: none;
+                        color: ${({ theme }) => theme.colors.red};
+                        text-decoration: underline;
+
+                        svg {
+                            stroke: red;
+                        }
+                    }
                 }
             }
         }
