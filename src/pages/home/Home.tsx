@@ -14,6 +14,8 @@ import { getLocalStorage } from "../../utils";
 import { LOCAL_STORAGE_KEY } from "../../constants";
 import useStickyNav from "../../hooks/useStickyNav";
 import useHomeLists from "../../hooks/useHomeLists";
+import useDetectUserLocation from "../../hooks/useDetectUserLocation";
+import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 
 const Home: React.FC<IHome> = ({
     handleGetCityWeather,
@@ -25,6 +27,7 @@ const Home: React.FC<IHome> = ({
     const { isNavSticky } = useStickyNav();
     const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
 
+    const { isDetectingLocation, usersLocation, usersLocationTemp } = useDetectUserLocation(storage);
     const {
         handleOnEditMPC,
         handleOnEditFavourites,
@@ -38,6 +41,7 @@ const Home: React.FC<IHome> = ({
 
     return (
         <StyledHome>
+            {isDetectingLocation && <OverlayLoader />}
             <div className={isNavSticky ? "nav-wrapper is-sticky" : "nav-wrapper"}>
                 <Navbar
                     handleGetCityWeather={handleGetCityWeather}
@@ -49,6 +53,8 @@ const Home: React.FC<IHome> = ({
                 handleGetCityWeather={handleGetCityWeather}
                 searchValue={searchValue}
                 handleChangeSearchInput={handleChangeSearchInput}
+                usersLocation={usersLocation}
+                usersLocationTemp={usersLocationTemp}
             />
 
             <div className="content">

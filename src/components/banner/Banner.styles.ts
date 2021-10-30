@@ -34,6 +34,21 @@ export const StyledBanner = styled.header`
         position: relative;
         z-index: 2;
 
+        &__user-location {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 3rem;
+
+            svg {
+                margin-right: 1rem;
+            }
+
+            @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+                right: 3rem;
+            }
+        }
+
         h1 {
             margin-bottom: 2rem;
             font-size: 3.6rem;

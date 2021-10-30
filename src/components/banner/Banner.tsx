@@ -5,8 +5,15 @@ import { Carousel } from "react-responsive-carousel";
 import { StyledBanner } from "./Banner.styles";
 import { IBanner } from "./IBanner";
 import { WEATHER_IMAGES } from "../../constants";
+import LocationIcon from "../../assets/icons/LocationIcon";
 
-const Banner: React.FC<IBanner> = ({ handleGetCityWeather, searchValue, handleChangeSearchInput }): JSX.Element => {
+const Banner: React.FC<IBanner> = ({
+    handleGetCityWeather,
+    searchValue,
+    handleChangeSearchInput,
+    usersLocation,
+    usersLocationTemp
+}): JSX.Element => {
     return (
         <StyledBanner className="banner">
             <Carousel
@@ -33,6 +40,15 @@ const Banner: React.FC<IBanner> = ({ handleGetCityWeather, searchValue, handleCh
                 })}
             </Carousel>
             <div className="banner__content">
+                {usersLocationTemp && usersLocation && (
+                    <div className="banner__content__user-location">
+                        <LocationIcon />
+                        <p>
+                            {usersLocation} - {usersLocationTemp} &deg;C
+                        </p>
+                    </div>
+                )}
+
                 <h1>Know the weather</h1>
                 <SearchBar
                     handleGetCityWeather={handleGetCityWeather}

@@ -11,7 +11,7 @@ const useHomeLists = (
     //-------------------------------------------------------
     //FAVOURITES TABLE LOGIC
     //-------------------------------------------------------
-    const myFavourites = storage?.favourites.sort() || [];
+    const myFavourites = storage?.favourites?.sort() || [];
     const [isLoadingFavouritesWeather, setIsLoadingFavouritesWeather] = useState(true);
     const [myFavouritesWeather, setMyFavouritesWeather] = useState<IHomePageTableRow[]>([]);
     const handleOnEditFavourites = (place: string) => {
@@ -39,7 +39,7 @@ const useHomeLists = (
     //-------------------------------------------------------
     //MOST POPULOUS TABLE LOGIC
     //-------------------------------------------------------
-    const mostPopulousCities = storage?.mostPopulousCities.sort() || [];
+    const mostPopulousCities = storage?.mostPopulousCities?.sort() || [];
     const [isLoadingMPCWeather, setIsLoadingMPCWeather] = useState(true);
     const [mostPopulousCitiesWeather, setMostPopulousCitiesWeather] = useState<IHomePageTableRow[]>([]);
     const handleOnEditMPC = (place: string) => {

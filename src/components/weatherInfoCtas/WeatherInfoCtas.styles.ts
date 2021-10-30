@@ -44,10 +44,14 @@ export const StyledWeatherInfoCtas = styled.div`
             border-radius: 1rem;
             margin-bottom: 2.4rem;
             resize: none;
-
             background-color: transparent;
             color: #fff;
             padding: 2rem;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0px 0px 4px 2px #fff;
+            }
         }
     }
 

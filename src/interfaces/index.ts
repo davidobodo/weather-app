@@ -17,6 +17,7 @@ export interface ILocalStorage {
     notes?: any;
     favourites?: any;
     mostPopulousCities?: any;
+    usersLocation?: string;
 }
 
 export interface IWeatherData {
