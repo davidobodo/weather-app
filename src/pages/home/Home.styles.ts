@@ -40,7 +40,7 @@ export const StyledHome = styled.div`
         &__section {
             margin-bottom: 5rem;
 
-            h3 {
+            h2 {
                 margin-bottom: 2rem;
                 font-size: 1.8rem;
                 color: #000;

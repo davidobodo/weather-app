@@ -56,7 +56,7 @@ const Home: React.FC<IHome> = ({
                     <TableLoadingShimmer amount={myFavourites.length} />
                 ) : myFavouritesWeather.length > 0 ? (
                     <section className="content__section">
-                        <h3>My Favourites</h3>
+                        <h2>My Favourites</h2>
                         <CustomTable list={myFavouritesWeather} onRemoveItem={handleOnEditFavourites} />
                     </section>
                 ) : null}
@@ -65,7 +65,7 @@ const Home: React.FC<IHome> = ({
                     <TableLoadingShimmer amount={mostPopulousCities.length} />
                 ) : mostPopulousCitiesWeather.length > 0 ? (
                     <section className="content__section">
-                        <h3> Top {mostPopulousCitiesWeather.length} Most Populous Cities</h3>
+                        <h2> Top {mostPopulousCitiesWeather.length} Most Populous Cities</h2>
                         <CustomTable list={mostPopulousCitiesWeather} onRemoveItem={handleOnEditMPC} />
                     </section>
                 ) : null}
