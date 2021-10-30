@@ -5,7 +5,7 @@ import CancelIcon from "../../assets/icons/CancelIcon";
 
 import { ICustomTable } from "./ICustomTable";
 import { StyledCustomTable } from "./CustomTable.styles";
-import { IWeatherData } from "../../interfaces";
+import { IWeatherData, IHomePageTableRow } from "../../interfaces";
 const CustomTable: React.FC<ICustomTable> = ({ list, onRemoveItem }): JSX.Element => {
     return (
         <StyledCustomTable>
@@ -18,14 +18,14 @@ const CustomTable: React.FC<ICustomTable> = ({ list, onRemoveItem }): JSX.Elemen
                 </tr>
             </thead>
             <tbody>
-                {list.map((item: IWeatherData, i) => {
+                {list.map((item: IHomePageTableRow, i) => {
                     return (
                         <tr key={i}>
                             <td>{i + 1}</td>
                             <td>
                                 <Link to={`/place?value=${item.name}`}>{item.name}</Link>
                             </td>
-                            <td>{(item.main.temp - 273).toFixed(1)}</td>
+                            <td>{(item.temperature - 273).toFixed(1)}</td>
                             <td>
                                 <button type="button" onClick={() => onRemoveItem(item.name)} aria-label="Remove row">
                                     <CancelIcon />

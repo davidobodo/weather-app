@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Banner from "../../components/banner/Banner";
 import CustomTable from "../../components/customTable/CustomTable";
 import Navbar from "../../components/navbar/Navbar";
+import TableLoadingShimmer from "../../components/tableLoadingShimmer/TableLoadingShimmer";
 
 import { IHome } from "./IHome";
 import { StyledHome } from "./Home.styles";
@@ -19,19 +20,22 @@ const Home: React.FC<IHome> = ({
     handleGetCityWeather,
     searchValue,
     handleChangeSearchInput,
-    onEditFavourites
+    onEditFavourites,
+    onRemovePopularCity
 }): JSX.Element => {
     const { isNavSticky } = useStickyNav();
     const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
 
     const {
-        handleOnEditTop15,
-        top15,
-        myFavourites,
+        handleOnEditMPC,
         handleOnEditFavourites,
-        top15Weather,
-        myFavouritesWeather
-    } = useHomeLists(storage);
+        myFavouritesWeather,
+        mostPopulousCitiesWeather,
+        isLoadingFavouritesWeather,
+        myFavourites,
+        mostPopulousCities,
+        isLoadingMPCWeather
+    } = useHomeLists(storage, onEditFavourites, onRemovePopularCity);
 
     return (
         <StyledHome>
@@ -50,19 +54,23 @@ const Home: React.FC<IHome> = ({
             />
 
             <div className="content">
-                {myFavouritesWeather.length > 0 && (
+                {isLoadingFavouritesWeather ? (
+                    <TableLoadingShimmer amount={myFavourites.length} />
+                ) : myFavouritesWeather.length > 0 ? (
                     <section className="content__section">
                         <h3>My Favourites</h3>
                         <CustomTable list={myFavouritesWeather} onRemoveItem={handleOnEditFavourites} />
                     </section>
-                )}
+                ) : null}
 
-                {top15Weather.length > 0 && (
+                {isLoadingMPCWeather ? (
+                    <TableLoadingShimmer amount={mostPopulousCities.length} />
+                ) : mostPopulousCitiesWeather.length > 0 ? (
                     <section className="content__section">
-                        <h3> Top {top15Weather.length} Most Populous Cities</h3>
-                        <CustomTable list={top15Weather} onRemoveItem={handleOnEditTop15} />
+                        <h3> Top {mostPopulousCitiesWeather.length} Most Populous Cities</h3>
+                        <CustomTable list={mostPopulousCitiesWeather} onRemoveItem={handleOnEditMPC} />
                     </section>
-                )}
+                ) : null}
             </div>
         </StyledHome>
     );

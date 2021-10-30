@@ -5,6 +5,7 @@ import imgMist from "../assets/images/mist.jpg";
 import imgClouds from "../assets/images/clouds.jpg";
 import imgClearsky from "../assets/images/clearsky.jpg";
 import { toast } from "react-toastify";
+import { IWeatherData, IHomePageTableRow } from "../interfaces";
 
 /**
  *
@@ -101,4 +102,19 @@ export const getWeatherImg = (description: string) => {
     } else {
         return imgClearsky;
     }
+};
+
+/**
+ *
+ * @param citiesData List of city data returned from endpoint
+ * @param citiesName List of city names
+ * @returns List of city data containing only the name and temperature
+ */
+export const extractNameAndTemp = (citiesData: IWeatherData[], citiesName: string[]): IHomePageTableRow[] => {
+    return citiesData.map((city, i) => {
+        return {
+            name: citiesName[i],
+            temperature: city.main.temp
+        };
+    });
 };

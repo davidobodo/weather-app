@@ -35,10 +35,10 @@ export const StyledHome = styled.div`
         max-width: 1024px;
         margin: auto;
         min-height: calc(100vh - 50rem);
+        padding: 0px 2rem;
 
         &__section {
             margin-bottom: 5rem;
-            padding: 0px 2rem;
 
             h3 {
                 margin-bottom: 2rem;

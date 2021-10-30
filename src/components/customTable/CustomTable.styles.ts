@@ -66,6 +66,7 @@ export const StyledCustomTable = styled.table`
 
                 &:nth-child(2) {
                     text-transform: capitalize;
+                    text-decoration: underline;
                 }
 
                 &:nth-child(3) {

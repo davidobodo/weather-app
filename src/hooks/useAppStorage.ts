@@ -7,7 +7,7 @@ import { LOCAL_STORAGE_KEY, MOST_POPULOUS_CITIES } from "../constants";
 
 const useAppStorage = () => {
     //-------------------------------------------------------
-    //Notes - Storage
+    //NOTES - STORAGE
     //-------------------------------------------------------
     const onSubmitNote = (place: string, note: string) => {
         let storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
@@ -24,7 +24,7 @@ const useAppStorage = () => {
     };
 
     //-------------------------------------------------------
-    //Favourites - Storage
+    //FAVOURITES - STORAGE
     //-------------------------------------------------------
     const onEditFavourites = (place: string) => {
         let storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
@@ -50,7 +50,23 @@ const useAppStorage = () => {
     };
 
     //-------------------------------------------------------
-    //Initialize storage
+    //MOST POPULOUS CITIES - STORAGE
+    //-------------------------------------------------------
+    //Remove a city
+    const onRemovePopularCity = (place: string) => {
+        let storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+        const filteredList = storage.mostPopulousCities.filter((item: string) => {
+            return item !== place;
+        });
+        storage = {
+            ...storage,
+            mostPopulousCities: filteredList
+        };
+        setLocalStorage(LOCAL_STORAGE_KEY, storage);
+    };
+
+    //-------------------------------------------------------
+    //INITIALIZE STORAGE
     //-------------------------------------------------------
     useEffect(() => {
         //When apps loads check if storage has been created, if not then create one;
@@ -59,14 +75,15 @@ const useAppStorage = () => {
             storage = {
                 notes: {},
                 favourites: [],
-                top15: MOST_POPULOUS_CITIES.sort()
+                mostPopulousCities: MOST_POPULOUS_CITIES.sort()
             };
             setLocalStorage(LOCAL_STORAGE_KEY, storage);
         }
     }, []);
     return {
         onSubmitNote,
-        onEditFavourites
+        onEditFavourites,
+        onRemovePopularCity
     };
 };
 

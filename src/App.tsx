@@ -23,7 +23,7 @@ import useScrollToTop from "./hooks/useScrollToTop";
 
 const App = (): JSX.Element => {
     const { searchValue, handleChangeSearchInput, handleGetCityWeather } = useSearchValue();
-    const { onSubmitNote, onEditFavourites } = useAppStorage();
+    const { onSubmitNote, onEditFavourites, onRemovePopularCity } = useAppStorage();
     // useDetectUserLocation();
     useScrollToTop();
     const location = useLocation();
@@ -51,6 +51,7 @@ const App = (): JSX.Element => {
                                     searchValue={searchValue}
                                     handleChangeSearchInput={handleChangeSearchInput}
                                     onEditFavourites={onEditFavourites}
+                                    onRemovePopularCity={onRemovePopularCity}
                                 />
                             );
                         }}

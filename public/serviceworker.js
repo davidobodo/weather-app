@@ -1,20 +1,8 @@
 const CACHE_NAME = "DSC_WEATHER_APP";
 
-const urlsToCache = ["index.html", "offline.html"];
-
-//Self represents the service worker. Used to remove error about restricted globals
-const self = this;
-
 //Install Service Worker (SW)
 self.addEventListener("install", (event) => {
-    console.log("SERVICE WORKER INSTALLED============");
-    // event.waitUntil(
-    //     caches.open(CACHE_NAME).then((cache) => {
-    //         //Happens just the first time user loads app
-    //         return cache.addAll(urlsToCache);
-    //     })
-    //     // .then(() => self.skipWaiting())
-    // );
+    //Since we want to cache the entire site, no need to perform any action here
 });
 
 //Activate the Service Worker(SW)
@@ -35,101 +23,23 @@ self.addEventListener("activate", (event) => {
 
 //Listen for requests
 self.addEventListener("fetch", (event) => {
-    //METHOD 1
-    //Show cache files if we are offline
-    // event.respondWith(
-    //     //Match all requests our page is sending and receiving
-    //     caches.match(event.request).then(() => {
-    //         //When there's something to fetch, simply fetch it so as to get the updated data. If not, show offline page if user is offline
-    //         return fetch(event.request).catch(() => caches.match("offline.html"));
-    //     })
-    // );
-
-    //METHOD 2
-    // event.respondWith(
-    //     fetch(event.request).catch(() => caches.match(event.request))
-    // );
-
-    // check if request is made by chrome extensions or web page
-    // if request is made for web page url must contain http.
     if (!(event.request.url.indexOf("http") === 0)) return; // skip the request. if request is not made with http protocol
-
-    //method 3
-    // event.respondWith(
-    //     fetch(event.request)
-    //         .then((res) => {
-    //             //After a network request is made, make a copy of the response returned
-    //             const resClone = res.clone();
-
-    //             //Open the cache
-    //             caches.open(CACHE_NAME).then((cache) => {
-    //                 //Add the response to the cache
-    //                 cache.put(event.request, resClone);
-    //             });
-
-    //             console.log(res, "THE RESPONSE");
-
-    //             //Return the response
-    //             return res;
-    //         })
-    //         .catch((err) => {
-    //             //If we get here then user is offline. In this case, we return the response in the cache
-    //             caches.match(event.request).then((res) => res);
-    //         })
-    // );
-    // event.respondWith(
-    //     caches.match(event.request).then(() => {
-    //         return fetch(event.request)
-    //             .then((res) => {
-    //                 //After a network request is made, make a copy of the response returned
-    //                 const resClone = res.clone();
-
-    //                 //Open the cache
-    //                 caches.open(CACHE_NAME).then((cache) => {
-    //                     //Add the response to the cache
-
-    //                     // console.log(event.request, "THE REQUEST");
-    //                     cache.put(event.request, resClone);
-    //                 });
-
-    //                 //Return the response
-    //                 return res;
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err, "THE ERR0R");
-
-    //                 //If we get here then user is offline. In this case, we return the response in the cache
-    //                 caches.match(event.request).then((res) => {
-    //                     console.log(res, "THE RESPONSE IN THE ERROR");
-
-    //                     return res;
-    //                 });
-    //             });
-    //     })
-    // );
-
     event.respondWith(
         (async function () {
-            var cache = await caches.open(CACHE_NAME);
-            var cachedFiles = await cache.match(event.request);
-
-            // if (cachedFiles) {
-            //     return cachedFiles;
-            // } else {
+            const cache = await caches.open(CACHE_NAME);
+            const cachedFiles = await cache.match(event.request);
             try {
-                var response = await fetch(event.request);
+                const response = await fetch(event.request);
 
-                if (event.request.url.includes("https://api.openweathermap.org/data/2.5/weather")) {
-                    console.log("GOING TO UPDATE THE CACHE");
-                }
+                // if (event.request.url.includes("https://api.openweathermap.org/data/2.5/weather")) {
+                //     console.log("GOING TO UPDATE THE CACHE");
+                // }
                 await cache.put(event.request, response.clone());
                 return response;
             } catch (e) {
-                /* ... */
-                console.log(e, "RETURN CACHED VALUE");
+                // console.log(e, "RETURN CACHED VALUE");
                 return cachedFiles;
             }
-            // }
         })()
     );
 });

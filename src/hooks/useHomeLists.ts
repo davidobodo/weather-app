@@ -2,67 +2,79 @@ import { useState, useEffect } from "react";
 
 import { MOST_POPULOUS_CITIES } from "../constants";
 import { getWeatherInCities } from "../apis";
-import { ILocalStorage, IWeatherData } from "../interfaces";
-import { showErrorToast } from "../utils";
+import { ILocalStorage, IWeatherData, IHomePageTableRow } from "../interfaces";
+import { showErrorToast, extractNameAndTemp } from "../utils";
 
-const useHomeLists = (storage: ILocalStorage) => {
-    const [top15, setTopI5] = useState<string[]>(MOST_POPULOUS_CITIES.sort());
-    const [top15Weather, setTop15Weather] = useState<IWeatherData[]>([]);
-    const handleOnEditTop15 = (place: string) => {
-        const newList = top15.filter((item: string) => item !== place);
-        setTopI5(newList);
-        // onEditFavourites(place);
-    };
-
-    const [myFavourites, setMyFavourites] = useState<string[]>(storage?.favourites || []);
-    const [myFavouritesWeather, setMyFavouritesWeather] = useState<IWeatherData[]>([]);
+const useHomeLists = (
+    storage: ILocalStorage,
+    onEditFavourites: (place: string) => void,
+    onRemovePopularCity: (place: string) => void
+) => {
+    //-------------------------------------------------------
+    //FAVOURITES TABLE LOGIC
+    //-------------------------------------------------------
+    const myFavourites = storage?.favourites.sort() || [];
+    const [isLoadingFavouritesWeather, setIsLoadingFavouritesWeather] = useState(true);
+    const [myFavouritesWeather, setMyFavouritesWeather] = useState<IHomePageTableRow[]>([]);
     const handleOnEditFavourites = (place: string) => {
-        const newList = myFavourites.filter((item: string) => item !== place);
-        setMyFavourites(newList);
-        // onEditFavourites(place);
+        const newList = myFavouritesWeather.filter((item: IHomePageTableRow) => {
+            return item.name !== place;
+        });
+        setMyFavouritesWeather(newList);
+        onEditFavourites(place);
     };
-
     useEffect(() => {
-        const fetchTop15Data = async () => {
-            try {
-                const res = await getWeatherInCities(top15);
-
-                console.log(res, "the response");
-                setTop15Weather(res || []);
-            } catch (err) {
-                console.log(err);
-                showErrorToast("Oops couldnt fetch temperature for cities");
-            }
-        };
-
-        const fetchMyFavouritesData = async () => {
-            try {
-                const res = await getWeatherInCities(myFavourites);
-
-                console.log(res, "the response second");
-                setMyFavouritesWeather(res || []);
-            } catch (err) {
-                console.log(err);
-                showErrorToast("Oops couldnt fetch temperature for cities");
-            }
-        };
-
         if (myFavourites.length > 0) {
-            fetchMyFavouritesData();
+            (async function () {
+                try {
+                    const res = await getWeatherInCities(myFavourites);
+                    setMyFavouritesWeather(extractNameAndTemp(res, myFavourites));
+                } catch (err) {
+                    showErrorToast("Oops couldnt fetch temperature for your favourites cities");
+                } finally {
+                    setIsLoadingFavouritesWeather(false);
+                }
+            })();
         }
+    }, []);
 
-        if (top15.length > 0) {
-            fetchTop15Data();
+    //-------------------------------------------------------
+    //MOST POPULOUS TABLE LOGIC
+    //-------------------------------------------------------
+    const mostPopulousCities = storage?.mostPopulousCities.sort() || [];
+    const [isLoadingMPCWeather, setIsLoadingMPCWeather] = useState(true);
+    const [mostPopulousCitiesWeather, setMostPopulousCitiesWeather] = useState<IHomePageTableRow[]>([]);
+    const handleOnEditMPC = (place: string) => {
+        const newList = mostPopulousCitiesWeather.filter((item: IHomePageTableRow) => {
+            return item.name !== place;
+        });
+        setMostPopulousCitiesWeather(newList);
+        onRemovePopularCity(place);
+    };
+    useEffect(() => {
+        if (mostPopulousCities.length > 0) {
+            (async function () {
+                try {
+                    const res = await getWeatherInCities(mostPopulousCities);
+                    setMostPopulousCitiesWeather(extractNameAndTemp(res, mostPopulousCities));
+                } catch (err) {
+                    showErrorToast("Oops couldnt fetch temperature for cities");
+                } finally {
+                    setIsLoadingMPCWeather(false);
+                }
+            })();
         }
     }, []);
 
     return {
-        handleOnEditTop15,
-        top15,
-        myFavourites,
+        handleOnEditMPC,
         handleOnEditFavourites,
-        top15Weather,
-        myFavouritesWeather
+        myFavourites,
+        myFavouritesWeather,
+        isLoadingFavouritesWeather,
+        mostPopulousCitiesWeather,
+        mostPopulousCities,
+        isLoadingMPCWeather
     };
 };
 
