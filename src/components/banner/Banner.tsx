@@ -41,7 +41,7 @@ const Banner: React.FC<IBanner> = ({
             </Carousel>
             <div className="banner__content">
                 {usersLocationTemp && usersLocation && (
-                    <div className="banner__content__user-location">
+                    <div className="banner__content__user-location" data-testid="user-location">
                         <LocationIcon />
                         <p>
                             {usersLocation} - {usersLocationTemp} &deg;C
