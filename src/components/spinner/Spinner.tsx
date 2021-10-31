@@ -6,11 +6,11 @@ import { StyledSpinner } from "./Spinner.styles";
 const Spinner: React.FC<ISpinner> = ({ color = "#000", size = 50, thickness = 5 }): JSX.Element => {
     return (
         <StyledSpinner color={color} size={size} thickness={thickness}>
-            <div className="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div className="lds-ring" data-testid="spinner-ring-wrapper">
+                <div data-testid="spinner-ring"></div>
+                <div data-testid="spinner-ring"></div>
+                <div data-testid="spinner-ring"></div>
+                <div data-testid="spinner-ring"></div>
             </div>
         </StyledSpinner>
     );
