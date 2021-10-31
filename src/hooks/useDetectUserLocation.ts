@@ -23,8 +23,8 @@ const useDetectUserLocation = (storage: ILocalStorage) => {
     };
 
     const handelUserAccept = async (position: any) => {
-        const { latitude, longitude } = position.coords;
         setIsDetectingLocation(true);
+        const { latitude, longitude } = position.coords;
         try {
             const res = await getUserslocation(latitude, longitude);
             const usersCity = res.results[0].components.state;
