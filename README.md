@@ -6,6 +6,14 @@ Project is hosted on netlify at this url https://knowtheweatherdcs.netlify.app.
 
 Project is also fully PWA compatible, enabling you to access the weather conditions of all your previous searches even when you are offline. Awesome right
 
+-   App home page view
+    ![](src/assets/images/home-desktop.png)
+    ![](src/assets/images/home-mobile.png)
+
+-   Single place page view
+    ![](src/assets/images/place-desktop.png)
+    ![](src/assets/images/place-mobile.png)
+
 ## Tools and tech stack used in project
 
 -   `React.JS` Library - Used Create-react-app https://create-react-app.dev/docs/adding-typescript/
@@ -34,9 +42,9 @@ Yarn is a package manager for this project
 
 ```js
    ActualComponent.tsx - Main Component
-   ActualComponent.styles.ts - Styles for main component
-   IActualComponent.ts - Typings for main component
-   ActualComponent.test.tsx - Tests for main component
+   ActualComponent.styles.ts - Styles for Main Component
+   IActualComponent.ts - Typings for Main Component
+   ActualComponent.test.tsx - Tests for Main Component
 ```
 
 NOTE: Every other folder in the src root, holds "Global" functions, helpers, assets e.t.c that are used in multiple places in the app, hence why they are not constrained to a component or a page
