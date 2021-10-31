@@ -45,3 +45,22 @@ export const MOST_POPULOUS_CITIES = [
 ];
 
 export const WEATHER_IMAGES = [imgThunderstorm, imgSnow, imgRain, imgMist, imgClouds, imgClearsky, imgMist2];
+
+export const TESTING_TABLE_MOCK_DATA = [
+    {
+        name: "SA",
+        temperature: 2.3
+    },
+    {
+        name: "Morocco",
+        temperature: 23.4
+    },
+    {
+        name: "Asia",
+        temperature: 100
+    },
+    {
+        name: "hello",
+        temperature: 34.2
+    }
+];

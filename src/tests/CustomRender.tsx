@@ -1,11 +1,16 @@
 import React, { ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
+import { MemoryRouter } from "react-router-dom";
 
 import { defaultTheme } from "../styles/Themes";
 
 const AllTheProviders: React.FC = ({ children }) => {
-    return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>;
+    return (
+        <MemoryRouter>
+            <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+        </MemoryRouter>
+    );
 };
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, "wrapper">) => {

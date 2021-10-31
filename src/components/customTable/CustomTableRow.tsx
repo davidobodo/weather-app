@@ -7,7 +7,7 @@ import { ICustomTableRow } from "./ICustomTable";
 
 const CustomTableRow: React.FC<ICustomTableRow> = ({ name, onDelete, temperature, serialNumber }): JSX.Element => {
     return (
-        <tr>
+        <tr data-testid="table-row">
             <td>{serialNumber}</td>
             <td>
                 <Link to={`/place?value=${name}`}>{name}</Link>
