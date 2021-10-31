@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { IButton } from "./IButton";
+import { IButtonStyles } from "./IButton";
 
-export const StyledButton = styled.button<IButton>`
+export const StyledButton = styled.button<IButtonStyles>`
     height: 4.6rem;
     padding: 0px 3rem;
     border-radius: 3rem;

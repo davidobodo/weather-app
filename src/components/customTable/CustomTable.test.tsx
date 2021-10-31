@@ -1,11 +1,11 @@
 import React from "react";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import CustomTableRow from "../components/customTable/CustomTableRow";
-import CustomTable from "../components/customTable/CustomTable";
+import CustomTableRow from "./CustomTableRow";
+import CustomTable from "./CustomTable";
 
-import { render } from "./CustomRender";
-import { TESTING_TABLE_MOCK_DATA } from "../constants";
+import { render } from "../../tests/CustomRender";
+import { TESTING_TABLE_MOCK_DATA } from "../../constants";
 
 const onDelete = jest.fn();
 const onRemoveItem = jest.fn();

@@ -2,9 +2,9 @@ import React from "react";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { render } from "./CustomRender";
-import Button from "../components/button/Button";
-import { defaultTheme } from "../styles/Themes";
+import { render } from "../../tests/CustomRender";
+import Button from "./Button";
+import { defaultTheme } from "../../styles/Themes";
 
 test("Button should display passed in text", () => {
     render(<Button type="button" text="Please Submit..." />);

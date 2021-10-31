@@ -64,3 +64,53 @@ export const TESTING_TABLE_MOCK_DATA = [
         temperature: 34.2
     }
 ];
+
+export const TEST_WEATHER_DATA = {
+    coord: {
+        lon: 3.75,
+        lat: 6.5833
+    },
+    weather: [
+        {
+            id: 500,
+            main: "Rain",
+            description: "light rain",
+            icon: "10n"
+        }
+    ],
+    base: "stations",
+    main: {
+        temp: 302.33,
+        feels_like: 309.33,
+        temp_min: 302.33,
+        temp_max: 302.33,
+        pressure: 1012,
+        humidity: 90,
+        sea_level: 1012,
+        grnd_level: 1012
+    },
+    visibility: 10000,
+    wind: {
+        speed: 2.57,
+        deg: 208,
+        gust: 7.11
+    },
+    rain: {
+        "1h": 0.75
+    },
+    clouds: {
+        all: 36
+    },
+    dt: 1635705453,
+    sys: {
+        type: 1,
+        id: 1185,
+        country: "NG",
+        sunrise: 1635658306,
+        sunset: 1635701118
+    },
+    timezone: 3600,
+    id: 2332453,
+    name: "Lagos",
+    cod: 200
+};

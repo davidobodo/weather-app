@@ -1,7 +1,7 @@
 import React from "react";
 import { screen } from "@testing-library/react";
-import { render } from "./CustomRender";
-import Banner from "../components/banner/Banner";
+import { render } from "../../tests/CustomRender";
+import Banner from "./Banner";
 
 const handleGetCityWeather = jest.fn();
 const handleChangeSearchInput = jest.fn();

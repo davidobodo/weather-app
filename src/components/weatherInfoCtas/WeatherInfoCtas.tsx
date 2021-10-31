@@ -21,11 +21,14 @@ const WeatherInfoCtas: React.FC<IWeatherInfoCtas> = ({
                     type="button"
                     text={isAmongFavourites ? `Remove ${place} from Favourites` : `Add ${place} to favourites`}
                     onClick={handleUpdateFavourites}
+                    testId="btn-favourites"
                 />
             </div>
             <form onSubmit={handleSubmitNote}>
                 <div className="form-field">
-                    <label htmlFor="notes">{place} Notes</label>
+                    <label htmlFor="notes" data-testid="notes-label">
+                        {place} Notes
+                    </label>
                     <textarea
                         name="notes"
                         id="notes"
@@ -33,11 +36,19 @@ const WeatherInfoCtas: React.FC<IWeatherInfoCtas> = ({
                         rows={10}
                         value={note}
                         onChange={handleUpdateNote}
+                        data-testid="notes"
                     ></textarea>
                 </div>
                 <div className="cta">
-                    <Button type="reset" text="Clear" variant="outlined" onClick={handleClearNote} fluid={false} />
-                    <Button type="submit" text="Save" fluid={false} />
+                    <Button
+                        type="reset"
+                        text="Clear"
+                        variant="outlined"
+                        testId="btn-clear"
+                        onClick={handleClearNote}
+                        fluid={false}
+                    />
+                    <Button type="submit" text="Save" testId="btn-save" fluid={false} />
                 </div>
             </form>
         </StyledWeatherInfoCtas>
