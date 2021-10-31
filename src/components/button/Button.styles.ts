@@ -9,9 +9,9 @@ export const StyledButton = styled.button<IButton>`
     cursor: pointer;
     width: ${({ fluid }) => (fluid ? "100%" : "auto")};
     font-weight: 500;
-    background-color: ${({ theme }) => theme.colors.red};
     color: #fff;
     text-transform: capitalize;
+    background-color: ${({ theme }) => theme.colors.red};
 
     &.outlined {
         border: 1px solid ${({ theme }) => theme.colors.red};
