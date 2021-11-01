@@ -4,7 +4,7 @@ import SearchBar from "../search/Search";
 import { Carousel } from "react-responsive-carousel";
 import { StyledBanner } from "./Banner.styles";
 import { IBanner } from "./IBanner";
-import { WEATHER_IMAGES, DESKTOP_IMAGES, MOBILE_IMAGES } from "../../constants";
+import { DESKTOP_IMAGES, MOBILE_IMAGES } from "../../constants";
 import LocationIcon from "../../assets/icons/LocationIcon";
 
 const Banner: React.FC<IBanner> = ({
