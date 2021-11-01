@@ -40,7 +40,7 @@ const Home: React.FC<IHome> = ({
 
     return (
         <StyledHome>
-            {isDetectingLocation && <OverlayLoader />}
+            {isDetectingLocation && <OverlayLoader text="Fetching your location's weather details..." />}
             <div className={isNavSticky ? "nav-wrapper is-sticky" : "nav-wrapper"}>
                 <Navbar
                     handleGetCityWeather={handleGetCityWeather}

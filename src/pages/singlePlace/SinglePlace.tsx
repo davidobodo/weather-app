@@ -52,7 +52,7 @@ const SingleCity: React.FC<ISinglePlace> = ({
 
     return (
         <StyledSinglePlace bgImg={getWeatherImg(bgImg)}>
-            {gettingWeatherReport && <OverlayLoader />}
+            {gettingWeatherReport && <OverlayLoader text="Fetching Weather details..." />}
 
             <div className="single-place__left-column">
                 <header className="single-place__left-column__header">

@@ -9,10 +9,10 @@ test("When no prop is passed in, default props should take effect", () => {
     const ringWrapper = screen.getByTestId("spinner-ring-wrapper");
     const rings = screen.getAllByTestId("spinner-ring");
 
-    expect(ringWrapper).toHaveStyle("width: 50px;height: 50px;");
+    expect(ringWrapper).toHaveStyle("width: 30px;height: 30px;");
     rings.forEach((ring) => {
         expect(ring).toHaveStyle(
-            "width: 50px; height: 50px; border: 5px solid #000; border-color: #000 transparent transparent transparent"
+            "width: 30px; height: 30px; border: 2px solid #000; border-color: #000 transparent transparent transparent"
         );
     });
 });
