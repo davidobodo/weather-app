@@ -1,9 +1,3 @@
-import imgThunderstorm from "../assets/images/thunderstorm.jpg";
-import imgSnow from "../assets/images/snow.jpg";
-import imgRain from "../assets/images/rain.jpg";
-import imgMist from "../assets/images/mist.jpg";
-import imgClouds from "../assets/images/clouds.jpg";
-import imgClearsky from "../assets/images/clearsky.jpg";
 import { toast } from "react-toastify";
 import { IWeatherData, IHomePageTableRow } from "../interfaces";
 
@@ -90,17 +84,17 @@ export const showInfoToast = (message: string) => {
  */
 export const getWeatherImg = (description: string) => {
     if (description.includes("rain")) {
-        return imgRain;
+        return "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/rain_jlwjbr.jpg";
     } else if (description.includes("mist")) {
-        return imgMist;
+        return "https://res.cloudinary.com/phitgeek/image/upload/v1635724776/mist_fnsmh4.jpg";
     } else if (description.includes("cloud")) {
-        return imgClouds;
+        return "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/clouds_qfvdox.jpg";
     } else if (description.includes("thunder")) {
-        return imgThunderstorm;
+        return "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/thunderstorm_su9vr3.jpg";
     } else if (description.includes("snow")) {
-        return imgSnow;
+        return "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/snow_uzeytt.jpg";
     } else {
-        return imgClearsky;
+        return "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/clearsky_aopcw5.jpg";
     }
 };
 
