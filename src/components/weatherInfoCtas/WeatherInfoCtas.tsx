@@ -1,7 +1,5 @@
 import React from "react";
-
 import Button from "../../components/button/Button";
-
 import { IWeatherInfoCtas } from "./IWeatherInfoCtas";
 import { StyledWeatherInfoCtas } from "./WeatherInfoCtas.styles";
 
@@ -36,6 +34,7 @@ const WeatherInfoCtas: React.FC<IWeatherInfoCtas> = ({
                         rows={10}
                         value={note}
                         onChange={handleUpdateNote}
+                        placeholder="Start typing..."
                         data-testid="notes"
                     ></textarea>
                 </div>

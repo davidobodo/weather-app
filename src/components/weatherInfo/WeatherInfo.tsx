@@ -25,10 +25,6 @@ const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
 
                 <div className="top-section__place">
                     <h2 className="city">{name}</h2>
-                    {/* <h3 className="country">{sys.country}</h3> */}
-                    {/* <p className="time">
-                        {time} {timezone}
-                    </p> */}
                 </div>
             </div>
 

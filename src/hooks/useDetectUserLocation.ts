@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getUserslocation, getPlaceWeather } from "../apis";
-import { showErrorToast, setLocalStorage } from "../utils";
-import { ILocalStorage } from "../interfaces";
+import { showErrorToast, setLocalStorageItem } from "../utils";
+import { ILocalStorage, Position, PositionError } from "../interfaces";
 import { LOCAL_STORAGE_KEY } from "../constants";
 
-const useDetectUserLocation = (storage: ILocalStorage) => {
+const useDetectUserLocation = (storage: ILocalStorage | null) => {
     const history = useHistory();
     const [isDetectingLocation, setIsDetectingLocation] = useState(false);
     const [usersLocation, setUsersLocation] = useState("");
@@ -22,7 +22,7 @@ const useDetectUserLocation = (storage: ILocalStorage) => {
         }
     };
 
-    const handelUserAccept = async (position: any) => {
+    const handleUserAccept = async (position: Position) => {
         setIsDetectingLocation(true);
         const { latitude, longitude } = position.coords;
         try {
@@ -33,7 +33,7 @@ const useDetectUserLocation = (storage: ILocalStorage) => {
                 ...storage,
                 usersLocation: usersCity
             };
-            setLocalStorage(LOCAL_STORAGE_KEY, updatedStorage);
+            setLocalStorageItem(LOCAL_STORAGE_KEY, updatedStorage);
             getUsersLocationWeather(usersCity);
             history.push(`/place?value=${usersCity}`);
         } catch (err) {
@@ -44,14 +44,14 @@ const useDetectUserLocation = (storage: ILocalStorage) => {
         }
     };
 
-    const handleUserDecline = (error: any) => {};
+    const handleUserDecline = (error: PositionError) => {};
 
     useEffect(() => {
         //If we have already asked the user for their location before, and they accepted, dont ask again. Just update the weather info
         if (storage?.usersLocation) {
             getUsersLocationWeather(storage?.usersLocation);
         } else if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(handelUserAccept, handleUserDecline);
+            navigator.geolocation.getCurrentPosition(handleUserAccept, handleUserDecline);
         }
     }, [storage?.usersLocation]);
 

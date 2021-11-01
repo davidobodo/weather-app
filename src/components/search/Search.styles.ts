@@ -19,7 +19,7 @@ export const StyledSearch = styled.form`
         flex: 1;
         width: 25.3rem;
         margin-left: 2rem;
-        padding: 0px 1.5rem;
+        padding: 0px 1.5rem 0px 0px;
         outline: none;
     }
 

@@ -14,9 +14,9 @@ export interface ISearch {
 }
 
 export interface ILocalStorage {
-    notes?: any;
-    favourites?: any;
-    mostPopulousCities?: any;
+    notes?: Record<string, string>;
+    favourites: string[];
+    mostPopulousCities: string[];
     usersLocation?: string;
 }
 
@@ -71,4 +71,25 @@ export interface IWeatherData {
 export interface IHomePageTableRow {
     name: string;
     temperature: number;
+}
+
+export interface Position {
+    coords: {
+        accuracy: number;
+        altitude: number | null;
+        altitudeAccuracy: number | null;
+        heading: number | null;
+        latitude: number;
+        longitude: number;
+        speed: number | null;
+    };
+    timestamp: number;
+}
+
+export interface PositionError {
+    code: number;
+    message: string;
+    PERMISSION_DENIED: number;
+    POSITION_UNAVAILABLE: number;
+    TIMEOUT: number;
 }

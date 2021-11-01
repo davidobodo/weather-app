@@ -47,7 +47,4 @@ export const StyledSinglePlace = styled.main<ISinglePlaceStyles>`
             margin-top: 10rem;
         }
     }
-
-    .single-place__right-column {
-    }
 `;

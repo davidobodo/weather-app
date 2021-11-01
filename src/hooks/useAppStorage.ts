@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getLocalStorage, setLocalStorage, showSuccessToast } from "../utils";
+import { getLocalStorageItem, setLocalStorageItem, showSuccessToast } from "../utils";
 import { ILocalStorage } from "../interfaces";
 import { LOCAL_STORAGE_KEY, MOST_POPULOUS_CITIES } from "../constants";
 
@@ -8,7 +8,11 @@ const useAppStorage = () => {
     //NOTES - STORAGE
     //-------------------------------------------------------
     const onSubmitNote = (place: string, note: string) => {
-        let storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+        let storage = getLocalStorageItem<ILocalStorage>(LOCAL_STORAGE_KEY);
+
+        if (!storage) {
+            return;
+        }
 
         storage = {
             ...storage,
@@ -17,7 +21,7 @@ const useAppStorage = () => {
                 [place]: note
             }
         };
-        setLocalStorage(LOCAL_STORAGE_KEY, storage);
+        setLocalStorageItem(LOCAL_STORAGE_KEY, storage);
         showSuccessToast("Note Updated");
     };
 
@@ -25,14 +29,15 @@ const useAppStorage = () => {
     //FAVOURITES - STORAGE
     //-------------------------------------------------------
     const onEditFavourites = (place: string) => {
-        let storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+        let storage = getLocalStorageItem<ILocalStorage>(LOCAL_STORAGE_KEY);
 
+        if (!storage) {
+            return;
+        }
         //Check if its currently among favourites
-        const isPresent = storage.favourites.find((item: string) => item === place);
+        const isPresent = storage?.favourites.find((item: string) => item === place);
         if (isPresent) {
-            const filteredFavourites = storage.favourites.filter((item: string) => {
-                return item !== place;
-            });
+            const filteredFavourites = storage.favourites.filter((item: string) => item !== place);
             storage = {
                 ...storage,
                 favourites: filteredFavourites
@@ -43,7 +48,7 @@ const useAppStorage = () => {
                 favourites: [...storage.favourites, place]
             };
         }
-        setLocalStorage(LOCAL_STORAGE_KEY, storage);
+        setLocalStorageItem(LOCAL_STORAGE_KEY, storage);
         showSuccessToast("Favourites Updated");
     };
 
@@ -52,7 +57,11 @@ const useAppStorage = () => {
     //-------------------------------------------------------
     //Remove a city
     const onRemovePopularCity = (place: string) => {
-        let storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+        let storage = getLocalStorageItem<ILocalStorage>(LOCAL_STORAGE_KEY);
+
+        if (!storage) {
+            return;
+        }
         const filteredList = storage.mostPopulousCities.filter((item: string) => {
             return item !== place;
         });
@@ -60,7 +69,7 @@ const useAppStorage = () => {
             ...storage,
             mostPopulousCities: filteredList
         };
-        setLocalStorage(LOCAL_STORAGE_KEY, storage);
+        setLocalStorageItem(LOCAL_STORAGE_KEY, storage);
     };
 
     //-------------------------------------------------------
@@ -68,7 +77,7 @@ const useAppStorage = () => {
     //-------------------------------------------------------
     useEffect(() => {
         //When apps loads check if storage has been created, if not then create one;
-        let storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+        let storage = getLocalStorageItem<ILocalStorage>(LOCAL_STORAGE_KEY);
         if (!storage) {
             storage = {
                 notes: {},
@@ -76,7 +85,7 @@ const useAppStorage = () => {
                 mostPopulousCities: MOST_POPULOUS_CITIES.sort(),
                 usersLocation: ""
             };
-            setLocalStorage(LOCAL_STORAGE_KEY, storage);
+            setLocalStorageItem(LOCAL_STORAGE_KEY, storage);
         }
     }, []);
     return {

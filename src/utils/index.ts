@@ -6,7 +6,7 @@ import { IWeatherData, IHomePageTableRow } from "../interfaces";
  * @param identifier Variable to store data in local storage as
  * @param payload Value to be stored
  */
-export const setLocalStorage = (identifier: string, payload: unknown): void => {
+export const setLocalStorageItem = (identifier: string, payload: unknown): void => {
     localStorage.setItem(identifier, JSON.stringify(payload));
 };
 
@@ -14,7 +14,7 @@ export const setLocalStorage = (identifier: string, payload: unknown): void => {
  *
  * @param identifier Variable to clear from local storage
  */
-export const clearLocalStorage = (identifier: string): void => {
+export const clearLocalStorageItem = (identifier: string): void => {
     localStorage.removeItem(identifier);
 };
 
@@ -22,10 +22,10 @@ export const clearLocalStorage = (identifier: string): void => {
  *
  * @param identifier Variable to access data  from local storage
  */
-export const getLocalStorage = (identifier: string): unknown | null => {
+export const getLocalStorageItem = <T = unknown>(identifier: string): T | null => {
     const info = localStorage.getItem(identifier);
     if (!!info) {
-        return JSON.parse(info);
+        return JSON.parse(info) as T;
     } else {
         return null;
     }
@@ -104,7 +104,7 @@ export const getWeatherImg = (description: string) => {
  * @param citiesName List of city names
  * @returns List of city data containing only the name and temperature
  */
-export const extractNameAndTemp = (citiesData: IWeatherData[], citiesName: string[]): IHomePageTableRow[] => {
+export const extractNameAndTemperature = (citiesData: IWeatherData[], citiesName: string[]): IHomePageTableRow[] => {
     return citiesData.map((city, i) => {
         return {
             name: citiesName[i],

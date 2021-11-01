@@ -1,7 +1,5 @@
 const CACHE_NAME = "DSC_WEATHER_APP";
 
-const self = this;
-
 //Install Service Worker (SW)
 self.addEventListener("install", (event) => {
     //Since we want to cache the entire site, no need to perform any action here
@@ -25,7 +23,7 @@ self.addEventListener("activate", (event) => {
 
 //Listen for requests
 self.addEventListener("fetch", (event) => {
-    if (!(event.request.url.indexOf("http") === 0)) return; // skip the request. if request is not made with http protocol
+    if (!(event.request.url.indexOf("http") === 0)) return; // skip the request. if request is not made with http protocol (Sometimes, user extension might make the request😅 weird right)
     event.respondWith(
         (async function () {
             const cache = await caches.open(CACHE_NAME);

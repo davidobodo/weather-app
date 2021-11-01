@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const StyledWeatherInfo = styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     background-color: transparent;
     color: #fff;
     padding-top: 7rem;
     padding-bottom: 3rem;
     min-height: calc(100vh - 16.4rem);
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
         height: 100%;
+        padding-top: 11vh;
     }
 
     h1,
@@ -22,11 +22,8 @@ export const StyledWeatherInfo = styled.section`
     }
 
     .top-section {
-        @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
+        text-align: center;
+        margin-bottom: 4rem;
 
         &__temp-details {
             text-transform: capitalize;
@@ -42,12 +39,6 @@ export const StyledWeatherInfo = styled.section`
         }
 
         &__place {
-            @media (min-width: ${({ theme }) => theme.breakpoints.miniLaptop}) {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-            }
-
             h2 {
                 font-size: 4.6rem;
                 margin-bottom: 1rem;
@@ -61,6 +52,8 @@ export const StyledWeatherInfo = styled.section`
             display: flex;
             justify-content: space-between;
             margin-bottom: 2rem;
+            margin-left: auto;
+            margin-right: auto;
 
             &:last-child {
                 margin-bottom: 0px;

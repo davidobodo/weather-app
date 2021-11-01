@@ -1,11 +1,11 @@
-import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import React from "react";
 import SearchBar from "../search/Search";
+import LocationIcon from "../../assets/icons/LocationIcon";
 import { Carousel } from "react-responsive-carousel";
 import { StyledBanner } from "./Banner.styles";
 import { IBanner } from "./IBanner";
 import { DESKTOP_IMAGES, MOBILE_IMAGES } from "../../constants";
-import LocationIcon from "../../assets/icons/LocationIcon";
 
 const Banner: React.FC<IBanner> = ({
     handleGetCityWeather,

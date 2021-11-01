@@ -17,7 +17,7 @@ const useSinglePlaceNote = (onSubmitNote: (place: string, note: string) => void,
 
     const handleSubmitNote = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (note.trim().length === 0) {
+        if (!note.trim().length) {
             showInfoToast("Please enter some notes.");
             return;
         }

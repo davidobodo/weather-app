@@ -1,19 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
 import WeatherInfoCtas from "../../components/weatherInfoCtas/WeatherInfoCtas";
 import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 import SearchBar from "../../components/search/Search";
-//Styles
 import { StyledSinglePlace } from "./SinglePlace.styles";
-
-//Interfaces
 import { ISinglePlace } from "./ISinglePlace";
 import { ILocalStorage } from "../../interfaces";
-
-import { getLocalStorage, getWeatherImg } from "../../utils";
+import { getLocalStorageItem, getWeatherImg } from "../../utils";
 import { LOCAL_STORAGE_KEY } from "../../constants";
-
 import useSinglePlaceNote from "../../hooks/useSinglePlaceNote";
 import useSinglePlaceFavourite from "../../hooks/useSinglePlaceFavourite";
 import useSinglePlaceWeatherData from "../../hooks/useSinglePlaceWeatherData";
@@ -26,7 +22,7 @@ const SingleCity: React.FC<ISinglePlace> = ({
     handleGetCityWeather,
     searchValue
 }): JSX.Element => {
-    const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+    const storage = getLocalStorageItem<ILocalStorage>(LOCAL_STORAGE_KEY);
     const place = new URLSearchParams(location.search).get("value") || "";
 
     const { note, handleSubmitNote, handleClearNote, handleUpdateNote, setNote } = useSinglePlaceNote(
@@ -64,7 +60,7 @@ const SingleCity: React.FC<ISinglePlace> = ({
                     />
                 </header>
                 {currentDisplayedWeather && <WeatherInfo weatherData={currentDisplayedWeather} />}
-                {noWeatherData && <h1 className="empty-note">Oops no data for "{place}"</h1>}
+                {noWeatherData && <h1 className="empty-note">Oops. No data for "{place}"</h1>}
             </div>
             <div className="single-place__right-column">
                 {currentDisplayedWeather && (

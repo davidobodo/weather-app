@@ -10,11 +10,12 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 
 //Components
 import Footer from "./components/footer/Footer";
+import OverlayLoader from "./components/overlayLoader/OverlayLoader";
 
+//CustomHooks
 import useSearchValue from "./hooks/useSearchValue";
 import useAppStorage from "./hooks/useAppStorage";
 import useScrollToTop from "./hooks/useScrollToTop";
-import OverlayLoader from "./components/overlayLoader/OverlayLoader";
 
 //Pages
 const Home = lazy(() => import("./pages/home/Home"));

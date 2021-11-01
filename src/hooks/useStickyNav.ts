@@ -3,13 +3,7 @@ import { useState, useEffect } from "react";
 const useStickyNav = () => {
     const [isNavSticky, setIsNavSticky] = useState(false);
 
-    const handleScroll = () => {
-        if (window.scrollY > 258) {
-            setIsNavSticky(true);
-        } else {
-            setIsNavSticky(false);
-        }
-    };
+    const handleScroll = () => setIsNavSticky(window.scrollY > 258);
 
     useEffect(() => {
         document.addEventListener("scroll", handleScroll);

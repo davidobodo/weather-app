@@ -1,31 +1,27 @@
-import React from "react";
-
+import React, { FC } from "react";
 import Banner from "../../components/banner/Banner";
 import CustomTable from "../../components/customTable/CustomTable";
 import Navbar from "../../components/navbar/Navbar";
 import TableLoadingShimmer from "../../components/tableLoadingShimmer/TableLoadingShimmer";
-
+import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 import { IHome } from "./IHome";
-import { StyledHome } from "./Home.styles";
-
 import { ILocalStorage } from "../../interfaces";
-
-import { getLocalStorage } from "../../utils";
+import { StyledHome } from "./Home.styles";
+import { getLocalStorageItem } from "../../utils";
 import { LOCAL_STORAGE_KEY } from "../../constants";
 import useStickyNav from "../../hooks/useStickyNav";
 import useHomeLists from "../../hooks/useHomeLists";
 import useDetectUserLocation from "../../hooks/useDetectUserLocation";
-import OverlayLoader from "../../components/overlayLoader/OverlayLoader";
 
-const Home: React.FC<IHome> = ({
+const Home: FC<IHome> = ({
     handleGetCityWeather,
     searchValue,
     handleChangeSearchInput,
     onEditFavourites,
     onRemovePopularCity
-}): JSX.Element => {
+}) => {
     const { isNavSticky } = useStickyNav();
-    const storage: ILocalStorage = getLocalStorage(LOCAL_STORAGE_KEY) as ILocalStorage;
+    const storage = getLocalStorageItem<ILocalStorage>(LOCAL_STORAGE_KEY);
     const { isDetectingLocation, usersLocation, usersLocationTemp } = useDetectUserLocation(storage);
     const {
         handleOnEditMPC,
@@ -69,7 +65,7 @@ const Home: React.FC<IHome> = ({
                     <TableLoadingShimmer amount={mostPopulousCities.length} />
                 ) : mostPopulousCitiesWeather.length > 0 ? (
                     <section className="content__section">
-                        <h2> Top {mostPopulousCitiesWeather.length} Most Populous Cities</h2>
+                        <h2>Top {mostPopulousCitiesWeather.length} Most Populous Cities</h2>
                         <CustomTable list={mostPopulousCitiesWeather} onRemoveItem={handleOnEditMPC} />
                     </section>
                 ) : null}

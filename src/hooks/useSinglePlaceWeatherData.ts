@@ -7,7 +7,7 @@ import { showErrorToast } from "../utils";
 
 const useSinglePlaceWeatherData = (
     place: string,
-    storage: ILocalStorage,
+    storage: ILocalStorage | null,
     setNote: React.Dispatch<React.SetStateAction<string>>,
     setIsAmongFavourites: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
@@ -23,10 +23,10 @@ const useSinglePlaceWeatherData = (
     const requestPlaceWeather = async (place: string) => {
         setGettingWeatherReport(true);
         try {
-            const res: any = await getPlaceWeather(place);
+            const res = await getPlaceWeather(place);
 
             //When there is no data for that specific city
-            if (res.cod === "404") {
+            if (res.cod === 404) {
                 setNoWeatherData(true);
                 setCurrentDisplayedWeather(null);
                 showErrorToast(`Oops no data for ${place}`);
@@ -43,7 +43,7 @@ const useSinglePlaceWeatherData = (
     };
 
     useEffect(() => {
-        if (place.length > 0) {
+        if (place.length) {
             //Check for notes
             if (storage?.notes && storage.notes[place]) {
                 setNote(storage.notes[place]);

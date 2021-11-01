@@ -17,7 +17,7 @@ const useSearchValue = () => {
             return;
         }
         setSearchValue("");
-        if (searchValue.trim().length === 0) return;
+        if (!searchValue.trim().length) return;
         history.push(`/place?value=${searchValue}`);
     };
 
