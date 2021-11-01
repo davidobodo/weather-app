@@ -29,7 +29,7 @@ export interface IWeatherData {
         lon: number;
         lat: number;
     };
-    cod: number;
+    cod: number | string;
     dt: number;
     id: number;
     main: {

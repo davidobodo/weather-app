@@ -7,10 +7,8 @@ import { IWeatherData } from "../../interfaces";
 
 const WeatherInfo: React.FC<IWeatherInfo> = ({ weatherData }): JSX.Element => {
     const { weather, main, wind, name } = weatherData as IWeatherData;
-
     const { temp: temperature, pressure, humidity } = main;
     const { description, icon } = weather[0];
-
     const { speed: wind_speed, deg: wind_degree } = wind;
 
     return (
