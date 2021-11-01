@@ -45,6 +45,24 @@ export const MOST_POPULOUS_CITIES = [
 
 export const WEATHER_IMAGES = [imgThunderstorm, imgSnow, imgRain, imgMist, imgClouds, imgClearsky];
 
+export const DESKTOP_IMAGES = [
+    "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/clearsky_aopcw5.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/snow_uzeytt.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/clouds_qfvdox.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/rain_jlwjbr.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/v1635724777/thunderstorm_su9vr3.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/v1635724776/mist_fnsmh4.jpg"
+];
+
+export const MOBILE_IMAGES = [
+    "https://res.cloudinary.com/phitgeek/image/upload/c_scale,w_469/v1635724777/clearsky_aopcw5.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/c_scale,w_469/v1635724777/snow_uzeytt.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/c_scale,w_469/v1635724777/clouds_qfvdox.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/c_scale,w_469/v1635724777/rain_jlwjbr.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/c_scale,w_469/v1635724777/thunderstorm_su9vr3.jpg",
+    "https://res.cloudinary.com/phitgeek/image/upload/c_scale,w_469/v1635724776/mist_fnsmh4.jpg"
+];
+
 export const TESTING_TABLE_MOCK_DATA = [
     {
         name: "SA",

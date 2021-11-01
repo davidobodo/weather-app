@@ -4,7 +4,7 @@ import SearchBar from "../search/Search";
 import { Carousel } from "react-responsive-carousel";
 import { StyledBanner } from "./Banner.styles";
 import { IBanner } from "./IBanner";
-import { WEATHER_IMAGES } from "../../constants";
+import { WEATHER_IMAGES, DESKTOP_IMAGES, MOBILE_IMAGES } from "../../constants";
 import LocationIcon from "../../assets/icons/LocationIcon";
 
 const Banner: React.FC<IBanner> = ({
@@ -14,6 +14,7 @@ const Banner: React.FC<IBanner> = ({
     usersLocation,
     usersLocationTemp
 }): JSX.Element => {
+    const displayedImages = window.innerWidth > 768 ? DESKTOP_IMAGES : MOBILE_IMAGES;
     return (
         <StyledBanner className="banner">
             <Carousel
@@ -31,7 +32,7 @@ const Banner: React.FC<IBanner> = ({
                 autoFocus={false}
                 animationHandler="fade"
             >
-                {WEATHER_IMAGES.map((item, i) => {
+                {displayedImages.map((item, i) => {
                     return (
                         <div key={i} className="banner__image">
                             <img src={item} alt="" />
