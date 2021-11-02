@@ -5,6 +5,7 @@ export const StyledBanner = styled.header`
     color: #fff;
     position: relative;
     height: 40rem;
+    overflow: hidden;
 
     .carousel-root {
         position: absolute;
